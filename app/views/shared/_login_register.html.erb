@@ -1,0 +1,61 @@
+<div>
+  <div id="register">
+    <%= render partial: 'shared/errors', locals: {errors: @errors} %>
+    <div class="row">
+      <div class="card-panel">
+        <!--TODO Change to dynamic path-->
+        <%= form_for :user, class: 'col s12', url: '/users' do |f| %>
+            <div class="input-field">
+              <%= f.text_field :full_name, id: 'full_name' %><br>
+              <%= f.label :full_name %>
+            </div>
+            <div class="input-field">
+              <%= f.text_field :username, id: 'username' %><br>
+              <%= f.label :username %>
+            </div>
+            <div class="input-field">
+              <%= f.text_field :phone, id: 'phone' %><br>
+              <%= f.label :phone %>
+            </div>
+            <div class="input-field">
+              <%= f.text_field :email %>
+              <%= f.label :email %><br>
+            </div>
+            <div class="input-field">
+              <%= f.password_field :password %>
+              <%= f.label :password %><br>
+            </div>
+            <div class="center">
+              <%= f.submit 'Register', class: 'btn waves-effect waves-light' %>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div id="login">
+    <%= render partial: 'shared/errors', locals: {errors: @errors} %>
+    <div class="row">
+      <div class="card-panel">
+        <!--TODO Change to dynamic path-->
+        <%= form_for :session, class: 'col s12', url: '/sessions' do |f| %>
+            <div class="row">
+              <div class="input-field col s12">
+                <%= f.text_field :email, class: 'validate' %>
+                <%= f.label :email %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <%= f.password_field :password, class: 'validate' %>
+                <%= f.label :password %>
+              </div>
+            </div>
+            <div class="row">
+              <%= f.submit 'Login', class: 'btn waves-effect waves-light right'%>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
