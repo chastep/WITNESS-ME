@@ -1,0 +1,28 @@
+<div id="register">
+  <%= render partial: 'shared/errors', locals: {errors: @errors} %>
+  <div class="row">
+    <div class="card-panel">
+      <%= form_for :challenge, class: 'col s12', url: '/challenges' do |f| %>
+          <div class="input-field">
+            <%= f.text_field :description, id: 'description' %><br>
+            <%= f.label :description %>
+          </div>
+          <div class="input-field">
+            <%= f.text_field :price, id: 'price' %><br>
+            <%= f.label :price %>
+          </div>
+          <div class="input-field">
+            <%= f.text_field :acceptor_username %><br>
+            <%= f.label :acceptor %>
+          </div>
+          <div class="input-field">
+            <%= f.text_field :witness_username %><br>
+            <%= f.label :witness %><br>
+          </div>
+          <div class="center">
+            <%= f.submit 'Challenge!', class: 'btn waves-effect waves-light' %>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>
