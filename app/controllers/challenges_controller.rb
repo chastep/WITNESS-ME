@@ -6,9 +6,9 @@ class ChallengesController < ApplicationController
 
   def create
     @challenge = Challenge.new(description: params[:challenge][:description], price: params[:challenge][:price])
-    @acceptor = User.find_by(username: params[:challenge][:acceptor_username])
+    @acceptor = User.find_by(username: params[:challenge][:acceptor_id])
     @challenge.acceptor_id = @acceptor.id
-    @witness = User.find_by(username: params[:challenge][:witness_username])
+    @witness = User.find_by(username: params[:challenge][:witness_id])
     @challenge.witness_id = @witness.id
     @challenge.challenger_id = current_user.id
     if @challenge.save
