@@ -11,11 +11,13 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     @user.split_name(params[:user][:full_name])
-    p "----------------------------------------"
-    p @user
+    app_token = $dwolla.auths.client
+    request_body = @user.customer_request_body
+    customer = app_token.post "customers", request_body
+    @user.dwolla_url = customer.headers[:location]
     if @user.save
       session[:user_id] = @user.id
-      redirect_to @user
+      redirect_to edit_user_path(@user)
     else
       @errors = @user.errors.full_messages
       render 'new'
@@ -23,14 +25,23 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find_by(id: params[:id])
   end
 
   def update
+    @user = User.find_by(id: params[:id])
+    customer_url = @user.dwolla_url
+    request_body = @user.funding_request_body
+    p request_body
+    p "------------------------------------"
+    app_token = $dwolla.auths.client
+    funding_source = app_token.post "#{customer_url}/funding-sources", request_body
+    redirect_to user_path(@user)
   end
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :password, :phone, :username)
+    params.require(:user).permit(:name, :email, :password, :phone, :username, :routing_number, :account_number, :type)
   end
 
 end
