@@ -33,9 +33,9 @@ class ChallengesController < ApplicationController
     end
   end
 
-  private
-    def challenge_params
-      params.require(:challenge).permit(:description, :price)
-    end
+  # private
+  #   def challenge_params
+  #     params.require(:challenge).permit(:description, :price)
+  #   end
 
 end
