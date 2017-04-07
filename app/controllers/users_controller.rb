@@ -31,17 +31,15 @@ class UsersController < ApplicationController
   def update
     @user = User.find_by(id: params[:id])
     customer_url = @user.dwolla_url
-    request_body = @user.funding_request_body
-    p request_body
-    p "------------------------------------"
+    request = @user.funding_request_body(params[:routing_number], params[:account_number], params[:type])
     app_token = $dwolla.auths.client
-    funding_source = app_token.post "#{customer_url}/funding-sources", request_body
+    funding_source = app_token.post "#{customer_url}/funding-sources", request
     redirect_to user_path(@user)
   end
 
   private
-  def user_params
-    params.require(:user).permit(:name, :email, :password, :phone, :username, :routing_number, :account_number, :type)
-  end
+    def user_params
+      params.require(:user).permit(:name, :email, :password, :phone, :username, :routing_number, :account_number, :type)
+    end
 
 end

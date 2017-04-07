@@ -13,17 +13,17 @@ class User < ApplicationRecord
     self.last_name = full_name.split(" ")[1]
   end
 
-  def routing_number
-    @routing_number
-  end
+  # def routing_number
+  #   @routing_number
+  # end
 
-  def account_number
-    @account_number
-  end
+  # def account_number
+  #   @account_number
+  # end
 
-  def type
-    @type
-  end
+  # def type
+  #   @type
+  # end
 
   # def last_four_digits(number)
   #   number[-4..-1]
@@ -37,11 +37,11 @@ class User < ApplicationRecord
     }
   end
 
-  def funding_request_body
+  def funding_request_body(routing_number, account_number, type)
     {
-      :routingNumber => @routing_number,
-      :accountNumber => @account_number,
-      :type => @type,
+      :routingNumber => routing_number,
+      :accountNumber => account_number,
+      :type => type,
       :name => self.first_name + " " + self.last_name + " - "
     }
   end

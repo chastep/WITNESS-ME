@@ -1,18 +1,18 @@
-<%= form_for :user, url: user_path(@user), method: :patch do |f| %>
+<%= form_tag(user_path(@user), method: :patch) do |f| %>
   <div class="input-field">
-    <%= f.text_field :routing_number, id: 'routing_number' %><br>
-    <%= f.label :routing_number %>
+    <%= label_tag :routing_number %>
+    <%= text_field_tag :routing_number %><br>
   </div>
   <div class="input-field">
-    <%= f.text_field :account_number, id: 'account_number' %><br>
-    <%= f.label :account_number %>
+    <%= label_tag :account_number %>
+    <%= text_field_tag :account_number%><br>
   </div>
   <div class="input-field">
-    <%= f.text_field :type, id: 'type' %>
-    <%= f.label :type %>
+    <%= label_tag :type %>
+    <%= text_field_tag :type%>
   </div>
   <div class="center">
-    <%= f.submit 'Add Bank!', class: 'btn waves-effect waves-light' %>
+    <%= submit_tag 'Add Bank!', class: 'btn waves-effect waves-light' %>
   </div>
 <% end %>
 
