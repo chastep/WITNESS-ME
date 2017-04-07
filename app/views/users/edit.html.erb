@@ -1,0 +1,19 @@
+<%= form_for :user, url: @user do |f| %>
+  <div class="input-field">
+    <%= f.text_field :routing_number, id: 'routing_number' %><br>
+    <%= f.label :routing_number %>
+  </div>
+  <div class="input-field">
+    <%= f.text_field :account_number, id: 'account_number' %><br>
+    <%= f.label :account_number %>
+  </div>
+  <div class="input-field">
+    <%= f.check_box_tag 'checking' 'savings' %>
+  </div>
+  <div class="center">
+    <%= f.submit 'Add Bank!', class: 'btn waves-effect waves-light' %>
+  </div>
+</form>
+
+<div id="logs">
+</div>

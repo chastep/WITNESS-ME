@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20170407001404) do
     t.integer  "challenger_id", null: false
     t.integer  "acceptor_id",   null: false
     t.integer  "witness_id"
+    t.integer  "winner_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
@@ -33,6 +34,7 @@ ActiveRecord::Schema.define(version: 20170407001404) do
     t.string   "username",        null: false
     t.string   "profile_picture"
     t.string   "password_digest", null: false
+    t.string   "dwolla_url",      null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
