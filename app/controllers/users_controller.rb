@@ -5,14 +5,17 @@ class UsersController < ApplicationController
 
   def show
     return redirect_to new_user_path if !logged_in?
-    return redirect user_path if !authorized?(params[:id])
+    return redirect user_path(current_user.id) if !authorized?(params[:id])
   end
 
   def create
     @user = User.new(user_params)
+    @user.split_name(params[:user][:full_name])
+    p "----------------------------------------"
+    p @user
     if @user.save
       session[:user_id] = @user.id
-      redirect_to user_path
+      redirect_to user_path(@user.id)
     else
       @errors = @user.errors.full_messages
       render 'new'
@@ -21,7 +24,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :password)
+    params.require(:user).permit(:name, :email, :password, :phone, :username)
   end
 
 end

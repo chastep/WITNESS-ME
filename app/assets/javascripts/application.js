@@ -14,7 +14,3 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
-$(document).ready(function(){
-  $('ul.tabs').tabs('select_tab', '#login-tab');
-  $('ul.tabs').tabs('select_tab', '#register-tab');
-});
