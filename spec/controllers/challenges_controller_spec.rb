@@ -55,16 +55,16 @@ describe ChallengesController do
 
   # end
 
-  describe "DELETE #destroy" do
+  # describe "DELETE #destroy" do
 
-    it "responds with status code 200" do
-      expect{ delete :destroy, { id: challenge.id } }.to change(Challenge, :count).by(-1)
-    end
+  #   it "responds with status code 200" do
+  #     expect{ delete :destroy, { id: challenge.id } }.to change(Challenge, :count).by(-1)
+  #   end
 
-    it "redirects to the user profile page" do
-      delete :destroy, { id: challenge.id }
-      response.should redirect_to(root_path)
-    end
-  end
+  #   it "redirects to the user profile page" do
+  #     delete :destroy, { id: challenge.id }
+  #     response.should redirect_to(root_path)
+  #   end
+  # end
 
 end
