@@ -10,7 +10,8 @@ $users = $app_token.get "customers"
 # witness org funding account location
 root = $app_token.get "/"
 bucket_location = root._links.account.href
-$bucket_url = $app_token.get "#{bucket_location}/funding-sources"
+bucket = $app_token.get "#{bucket_location}/funding-sources"
+$bucket_url = bucket._embedded[:"funding-sources"][0][:"_links"][:"self"][:"href"]
 # witness org id
 main = $app_token.get bucket_location
 $witness_dwolla_id = main.id
