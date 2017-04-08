@@ -2,7 +2,9 @@ require 'rails_helper'
 
 describe ChallengesController do
 
-  let(:challenge) { Challenge.create!(description: "This is a challenge", price: 1000, challenger_id: 1, acceptor_id: 2, witness_id: 1, winner_id: 1)}
+  let(:user) { User.create!(first_name: "Karl", last_name: "Thomas", email: "karl@karl.com", phone: "555-555-5555", username: "KThomas", password: "password") }
+
+  let(:challenge) { Challenge.create!(description: "This is a challenge", price: 1000, challenger_id: 1, acceptor_id: 1, witness_id: 1, winner_id: 1)}
 
   describe "GET #new" do
     it "responds with status code 200" do
@@ -45,18 +47,24 @@ describe ChallengesController do
     end
   end
 
-  # describe "POST #destroy" do
+  # describe "POST #create" do
 
-  #   it "responds with status code 200" do
-  #     session[:user_id] = 1
-  #     post :destroy, { id: challenge.id }
-  #     expect(response).to have_http_status(200)
-  #   end
-
-  #   it "redirects to the user login page" do
-  #     post :destroy, { id: challenge.id }
-  #     expect(response).to redirects_to(root_path)
-  #   end
   # end
+
+  # describe "PUT #update" do
+
+  # end
+
+  describe "DELETE #destroy" do
+
+    it "responds with status code 200" do
+      expect{ delete :destroy, { id: challenge.id } }.to change(Challenge, :count).by(-1)
+    end
+
+    it "redirects to the user profile page" do
+      delete :destroy, { id: challenge.id }
+      response.should redirect_to(root_path)
+    end
+  end
 
 end
