@@ -16,12 +16,20 @@ $('#start').click(function() {
           ]
         }, function(err, res) {
     console.log('Error: ' + JSON.stringify(err) + ' -- Response: ' + JSON.stringify(res));
-    $.ajax({
+    var ajaxFunc = $.ajax({
       url: "<%= user_path(@user) %>",
       method: 'PUT',
       dataType: 'json',
       data: {user: {dwolla_url: res}}
     });
+
+    ajaxFunc.done(function(response) {
+      console.log(response);
+    });
+    ajaxFunc.fail(function(response) {
+      console.log("shits broke fam");
+    });
+
   });
 });
 </script>

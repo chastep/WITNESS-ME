@@ -42,18 +42,20 @@ class UsersController < ApplicationController
     if request.xhr?
       res = params[:user][:dwolla_url][:_links][:"funding-source"][:href]
       @user.update_attributes(dwolla_url: res)
-      p "-----------------------------------------"
-      p @user
-      p "-----------------------------------------"
+
+      @user.dwolla_url
+      # p "-----------------------------------------"
+      # p @user
+      # p "-----------------------------------------"
       # app_token = $dwolla.auths.client
       # root = app_token.get "/"
       # bucket_location = root._links.account.href
       # bucket = $app_token.get "#{bucket_location}/funding-sources"
       # bucket_url = bucket._embedded[:"funding-sources"][0][:"_links"][:"self"][:"href"]
-      p $bucket_url
-      p "-----------------------------------------"
+      # p $bucket_url
+      # p "-----------------------------------------"
     end
-    render "show"
+    # redirect_to "/users/<%= current_user.id %>"
   end
 
   private
