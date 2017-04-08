@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20170407001404) do
     t.string   "profile_picture"
     t.string   "password_digest", null: false
     t.string   "dwolla_url"
+    t.string   "dwolla_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end

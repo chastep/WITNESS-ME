@@ -24,16 +24,19 @@ class ChallengesController < ApplicationController
 
   def edit
     @challenge = Challenge.find_by(id: params[:id])
-    p "----------------------------------------------"
-    p @challenge
-    p "----------------------------------------------"
     @challenger = User.find_by(id: @challenge.challenger_id)
     @acceptor = User.find_by(id: @challenge.acceptor_id)
     @witness = User.find_by(id: @challenge.witness_id)
   end
 
   def update
-    @user = User.find_by(id: params[:id])
+    @challenge = Challenge.find_by(id: params[:id])
+    @winner = User.find_by(id: @challenge.winner_id)
+    app_token = $dwolla.auths.client
+    bucket = app_token.get "/"
+    @bucket_url = bucket._links.account.href
+    transfer_request = @challenge.generate_transfer_request(@winner, @bucket_url)
+    transfer = app_token.post "transfers", transfer_request
   end
 
   def destroy

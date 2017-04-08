@@ -15,6 +15,8 @@ class UsersController < ApplicationController
     request_body = @user.customer_request_body
     customer = app_token.post "customers", request_body
     @user.dwolla_url = customer.headers[:location]
+    users = app_token.get "customers"
+    @user.dwolla_id = users._embedded.customers[0].id
     if @user.save
       session[:user_id] = @user.id
       redirect_to edit_user_path(@user)
@@ -35,9 +37,6 @@ class UsersController < ApplicationController
     app_token = $dwolla.auths.client
     funding_source = app_token.post "#{customer_url}/funding-sources", request
     @user.dwolla_url = funding_source.headers[:location]
-    # p "--------------------------------------------"
-    # p @user
-    # p "--------------------------------------------"
     redirect_to user_path(@user)
   end
 

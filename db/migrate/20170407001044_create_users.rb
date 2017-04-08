@@ -9,6 +9,7 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.string :profile_picture
       t.string :password_digest, null: false
       t.string :dwolla_url
+      t.string :dwolla_id
 
       t.timestamps null: false
     end
