@@ -31,6 +31,7 @@ class ChallengesController < ApplicationController
 
   def update
     @challenge = Challenge.find_by(id: params[:id])
+    value = @challenge.price / 100
     # transfer for each user to the bucket
     # start with challenger
     @challenger = User.find_by(id: @challenge.challenger_id)
@@ -38,21 +39,21 @@ class ChallengesController < ApplicationController
     # app_token = $dwolla.auths.client
     # bucket = app_token.get "/"
     # bucket_url = bucket._links.account.href
-    challenger_transfer_request = @challenge.generate_transfer_request( @challenger.dwolla_id, $bucket_url, @challenge.price, $witness_dwolla_id)
-    p "--------------------------------------"
-    p challenger_transfer_request
-    p "--------------------------------------"
+    challenger_transfer_request = @challenge.generate_transfer_request( @challenger.dwolla_url, $bucket_url, value, $witness_dwolla_id)
+    # p "--------------------------------------"
+    # p challenger_transfer_request
+    # p "--------------------------------------"
     challenger_transfer_to_bucket = $app_token.post "transfers", challenger_transfer_request
     # -----------------------------------------------
     # acceptor tranfer to bucket
     @acceptor = User.find_by(id: @challenge.acceptor_id)
-    acceptor_transfer_request = @challenge.generate_transfer_request(@acceptor.dwolla_url, $bucket_url, @challenge.price, $witness_dwolla_id)
+    acceptor_transfer_request = @challenge.generate_transfer_request(@acceptor.dwolla_url, $bucket_url, value, $witness_dwolla_id)
     acceptor_transfer_to_bucket = $app_token.post "transfers", acceptor_transfer_request
     # -----------------------------------------------
     # transfer fromt the witness bucket to the winner
     @winner = User.find_by(id: @challenge.winner_id)
     pot = (@challenge.price * 2) / 100
-    p pot
+    # p pot
     # app_token = $dwolla.auths.client
     # bucket = app_token.get "/"
     # bucket_url = bucket._links.account.href

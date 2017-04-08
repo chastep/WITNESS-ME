@@ -1,10 +1,10 @@
 class Challenge < ApplicationRecord
 
-  def generate_transfer_request(funding_source_id, recipient_url, value, customer_id)
+  def generate_transfer_request(sender_url, recipient_url, value, customer_id)
     {
       :_links => {
         :source => {
-          :href => "https://api-sandbox.dwolla.com/funding-sources/" + funding_source_id
+          :href => sender_url
         },
         :destination => {
           :href => recipient_url

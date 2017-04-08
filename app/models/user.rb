@@ -18,22 +18,6 @@ class User < ApplicationRecord
     self.last_name = full_name.split(" ")[1]
   end
 
-  # def routing_number
-  #   @routing_number
-  # end
-
-  # def account_number
-  #   @account_number
-  # end
-
-  # def type
-  #   @type
-  # end
-
-  # def last_four_digits(number)
-  #   number[-4..-1]
-  # end
-
   def customer_request_body
     {
       :firstName => self.first_name,
