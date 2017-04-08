@@ -1,12 +1,33 @@
-<div class="user-container">
-
+<div id="register">
+  <%= render partial: 'shared/errors', locals: {errors: @errors} %>
   <div class="row">
-    <div class="col s12">
-      <ul class="tabs">
-        <li id="login-tab" class="tab col s6"><a href="#login">Login</a></li>
-        <li id="register-tab"class="tab col s6"><a class="active" href="#register">Register</a></li>
-      </ul>
+    <div class="card-panel">
+      <!--TODO Change to dynamic path-->
+      <%= form_for :user, class: 'col s12', url: '/users' do |f| %>
+          <div class="input-field">
+            <%= f.text_field :full_name, id: 'full_name' %><br>
+            <%= f.label :full_name %>
+          </div>
+          <div class="input-field">
+            <%= f.text_field :username, id: 'username' %><br>
+            <%= f.label :username %>
+          </div>
+          <div class="input-field">
+            <%= f.text_field :phone, id: 'phone' %><br>
+            <%= f.label :phone %>
+          </div>
+          <div class="input-field">
+            <%= f.text_field :email %>
+            <%= f.label :email %><br>
+          </div>
+          <div class="input-field">
+            <%= f.password_field :password %>
+            <%= f.label :password %><br>
+          </div>
+          <div class="center">
+            <%= f.submit 'Register', class: 'btn waves-effect waves-light' %>
+          </div>
+      <% end %>
     </div>
   </div>
 </div>
-<%= render 'shared/login_register' %>

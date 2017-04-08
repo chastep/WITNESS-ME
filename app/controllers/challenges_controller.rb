@@ -12,7 +12,7 @@ class ChallengesController < ApplicationController
     if @challenge.save
       redirect_to handshake_path(@challenge)
     else
-      @errors = @user.errors.full_messages
+      @errors = @challenge.errors.full_messages
       render 'new'
     end
   end

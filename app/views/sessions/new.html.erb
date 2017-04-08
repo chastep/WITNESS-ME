@@ -1,12 +1,25 @@
-<div class="session-container">
-
+<div id="login">
+  <%= render partial: 'shared/errors', locals: {errors: @errors} %>
   <div class="row">
-    <div class="col s12">
-      <ul class="tabs">
-        <li id="login-tab" class="tab col s6"><a class="active" href="#login">Login</a></li>
-        <li id="register-tab"class="tab col s6"><a href="#register">Register</a></li>
-      </ul>
+    <div class="card-panel">
+      <!--TODO Change to dynamic path-->
+      <%= form_for :session, class: 'col s12', url: '/sessions' do |f| %>
+          <div class="row">
+            <div class="input-field col s12">
+              <%= f.text_field :email, class: 'validate' %>
+              <%= f.label :email %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <%= f.password_field :password, class: 'validate' %>
+              <%= f.label :password %>
+            </div>
+          </div>
+          <div class="row">
+            <%= f.submit 'Login', class: 'btn waves-effect waves-light right'%>
+          </div>
+      <% end %>
     </div>
   </div>
 </div>
-<%= render 'shared/login_register' %>
