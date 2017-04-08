@@ -1,25 +1,22 @@
 class Challenge < ApplicationRecord
 
-  def generate_transfer_request(winner, bucket_url)
-    source_url = bucket_url
-    destination_url = winner.dwolla_url
-    value = (self.price.to_s.to_i * 2) / 100
+  def generate_transfer_request(funding_source_id, recipient_url, value, customer_id)
     {
       :_links => {
         :source => {
-          :href => source_url
+          :href => "https://api-sandbox.dwolla.com/funding-sources/" + funding_source_id
         },
         :destination => {
-          :href => destination_url
+          :href => recipient_url
         }
       },
       :amount => {
         :currency => "USD",
-        :value => value
+        :value => "#{value}"
       },
       :metadata => {
-        :customerId => winner.dwolla_id,
-        :notes => "For winning the challenge."
+        :customerId => customer_id,
+        :notes => "transfer initiated"
       }
     }
   end
