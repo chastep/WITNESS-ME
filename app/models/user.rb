@@ -1,9 +1,11 @@
 class User < ApplicationRecord
-  include BCrypt
-
   has_secure_password
 
-  has_many :challenges
+  has_many :witnessed_challenges, class_name: "Challenge", foreign_key: "witness_id"
+  has_many :challenged_challenges, class_name: "Challenge", foreign_key: "challenger_id"
+  has_many :accepted_challenges, class_name: "Challenge", foreign_key: "acceptor_id"
+  has_many :won_challenges, class_name: "Challenge", foreign_key: "winner_id"
+  has_many :handshakes
 
   def full_name
     @full_name
