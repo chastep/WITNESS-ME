@@ -1,28 +1,21 @@
-<div id="register">
-  <%= render partial: 'shared/errors', locals: {errors: @errors} %>
-  <div class="row">
-    <div class="card-panel">
-      <%= form_for :challenge, class: 'col s12', url: '/challenges' do |f| %>
-          <div class="input-field">
-            <%= f.text_field :description, id: 'description' %><br>
-            <%= f.label :description %>
-          </div>
-          <div class="input-field">
-            <%= f.text_field :price, id: 'price' %><br>
-            <%= f.label :price %>
-          </div>
-          <div class="input-field">
-            <%= f.text_field :acceptor_id, id: 'acceptor_id' %><br>
-            <%= f.label :acceptor %>
-          </div>
-          <div class="input-field">
-            <%= f.text_field :witness_id, id: 'witness_id' %><br>
-            <%= f.label :witness %><br>
-          </div>
-          <div class="center">
-            <%= f.submit 'Challenge!', class: 'btn waves-effect waves-light' %>
-          </div>
-      <% end %>
-    </div>
+<%= form_tag(challenges_path) do |f| %>
+  <div class="input-field">
+    <%= label_tag :description %>
+    <%= text_field(:challenge, :description)  %><br>
   </div>
-</div>
+  <div class="input-field">
+    <%= label_tag :price %>
+    <%= text_field(:challenge, :price) %><br>
+  </div>
+  <div class="input-field">
+    <%= label_tag :acceptor %>
+    <%= text_field(:challenge, :acceptor_id) %><br>
+  </div>
+  <div class="input-field">
+    <%= label_tag :witness %>
+    <%= text_field(:challenge, :witness_id) %><br>
+  </div>
+  <div class="center">
+    <%= submit_tag 'Challenge!', class: 'btn waves-effect waves-light' %>
+  </div>
+<% end %>

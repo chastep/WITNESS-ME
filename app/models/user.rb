@@ -4,8 +4,13 @@ class User < ApplicationRecord
   has_secure_password
 
   has_many :challenges
+
   def full_name
     @full_name
+  end
+
+  def show_full_name
+    self.first_name + " " + self.last_name
   end
 
   def split_name(full_name)

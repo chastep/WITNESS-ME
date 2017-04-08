@@ -34,6 +34,10 @@ class UsersController < ApplicationController
     request = @user.funding_request_body(params[:routing_number], params[:account_number], params[:type])
     app_token = $dwolla.auths.client
     funding_source = app_token.post "#{customer_url}/funding-sources", request
+    @user.dwolla_url = funding_source.headers[:location]
+    # p "--------------------------------------------"
+    # p @user
+    # p "--------------------------------------------"
     redirect_to user_path(@user)
   end
 

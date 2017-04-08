@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>WITNESSMe</title>
+    <title>WITNESS ME</title>
     <%= csrf_meta_tags %>
 
     <!-- Compiled and minified CSS -->
@@ -18,6 +18,25 @@
   </head>
 
   <body>
+      <nav>
+        <div class="nav-wrapper">
+          <% if logged_in? %>
+            <%= link_to 'WITNESS ME', user_path(current_user), class: 'brand-logo' %>
+          <% else %>
+            <%= link_to 'WITNESS ME', signup_path, class: 'brand-logo' %>
+          <% end %>
+          <ul id="nav-mobile" class="right">
+            <% if logged_in? %>
+            <li><%= link_to 'HOME', user_path(current_user) %></li>
+              <li><%= link_to 'LOGOUT', logout_path %></li>
+            <% else %>
+              <li><%= link_to 'HOME', login_path %></li>
+              <li><%= link_to 'LOGIN', login_path %></li>
+              <li><%= link_to 'REGISTER', signup_path %></li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
     <%= yield %>
   </body>
 </html>

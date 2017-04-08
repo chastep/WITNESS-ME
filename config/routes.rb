@@ -3,7 +3,8 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create, :show, :edit, :update]
   resources :sessions, only: [:new, :create, :destroy]
-  resources :challenges, only: [:new, :create, :show, :destroy]
+  resources :challenges, only: [:new, :create, :show, :destroy, :edit, :update]
+  resources :handshakes, only: [:show]
 
   root 'users#new'
 
@@ -13,5 +14,7 @@ Rails.application.routes.draw do
 
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
+
+  mount ActionCable.server, at: "/cable"
 
 end

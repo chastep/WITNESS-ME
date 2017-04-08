@@ -1,0 +1,34 @@
+<h1>CHALLENGE TIME!!</h1>
+
+<ul>
+  <li>What is GOING ON?? - <%= @challenge.description %></li><br>
+  <li>Challenger: <%= @challenger.show_full_name %></li>
+  <li>Acceptor: <%= @acceptor.show_full_name %></li>
+  <% if @witness %>
+    <li>Witness: <%= @witness.show_full_name %></li>
+  <% end %>
+  <br>
+  <li>Date: <%= @challenge.created_at.strftime("%a, %b %d, %Y") %></li>
+  <li>Price Put on the Line: $<%= @challenge.price %></li>
+</ul>
+
+<%= form_tag do |f| %>
+  <div class="center">
+    <%= submit_tag 'Challenge Completed?', class: 'btn waves-effect waves-light' %>
+  </div>
+<% end %>
+
+<div id="challenge-complete">
+  <h5>Who Won this Glorious Challenge?</h5>
+  <%= form_tag do |f| %>
+    <div class="center">
+      <%= submit_tag "#{@acceptor.show_full_name}" %>
+    </div>
+  <% end %>
+
+  <%= form_tag do |f| %>
+    <div class="center">
+      <%= submit_tag "#{@challenger.show_full_name}" %>
+    </div>
+  <% end %>
+</div>

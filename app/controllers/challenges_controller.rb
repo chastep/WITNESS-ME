@@ -5,14 +5,12 @@ class ChallengesController < ApplicationController
   end
 
   def create
-    @challenge = Challenge.new(description: params[:challenge][:description], price: params[:challenge][:price])
-    @acceptor = User.find_by(username: params[:challenge][:acceptor_id])
-    @challenge.acceptor_id = @acceptor.id
-    @witness = User.find_by(username: params[:challenge][:witness_id])
-    @challenge.witness_id = @witness.id
+    @challenge = Challenge.new(challenge_params)
     @challenge.challenger_id = current_user.id
+    # @challenge.acceptor_id = User.find_by(username: params[:acceptor_id])
+    # @challenge.witness_id = User.find_by(username: params[:witness_id])
     if @challenge.save
-      redirect_to challenge_path(@challenge)
+      redirect_to handshake_path(@challenge)
     else
       @errors = @user.errors.full_messages
       render 'new'
@@ -24,6 +22,20 @@ class ChallengesController < ApplicationController
     render 'show'
   end
 
+  def edit
+    @challenge = Challenge.find_by(id: params[:id])
+    p "----------------------------------------------"
+    p @challenge
+    p "----------------------------------------------"
+    @challenger = User.find_by(id: @challenge.challenger_id)
+    @acceptor = User.find_by(id: @challenge.acceptor_id)
+    @witness = User.find_by(id: @challenge.witness_id)
+  end
+
+  def update
+    @user = User.find_by(id: params[:id])
+  end
+
   def destroy
     if @challenge.challenger_id == session[:user_id]
       @pairing.destroy
@@ -33,9 +45,9 @@ class ChallengesController < ApplicationController
     end
   end
 
-  # private
-  #   def challenge_params
-  #     params.require(:challenge).permit(:description, :price)
-  #   end
+  private
+    def challenge_params
+      params.require(:challenge).permit(:description, :price, :acceptor_id, :witness_id)
+    end
 
 end
