@@ -1,0 +1,30 @@
+$(document).on('turbolinks:load', function() {
+  submitNewMessage();
+});
+
+<% Challenge.all.each do |challenge| %>
+
+  App['handshake' + <%=challenge.id%>] = App.cable.subscriptions.create({channel: 'HandshakesChannel', room: <%=challenge.id%>}, {
+  received: function(data) {
+   $("[data-challenge='" + this.challengeId + "']").removeClass('hidden')
+    return $("[data-challenge='" + this.challengeId + "']").append(data.message);
+  },
+
+  setChallengeId: function(challengeId) {
+    this.challengeId = challengeId
+  }
+});
+<% end %>
+
+function submitNewMessage(){
+  $('textarea#message_content').keydown(function(event) {
+    if (event.keyCode == 13) {
+        var msg = event.target.value
+        var challengeId = $("[data-challenge]").data().challenge
+        App['room' + challengeId].setchallengeId(challengeId)
+        App['room' + challengeId].send({message: msg})
+        $('[data-textarea="message"]').val(" ")
+        return false;
+     }
+  });
+}
