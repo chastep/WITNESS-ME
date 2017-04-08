@@ -9,24 +9,23 @@
   <% end %>
   <br>
   <li>Date: <%= @challenge.created_at.strftime("%a, %b %d, %Y") %></li>
-  <li>Price Put on the Line: $<%= @challenge.price %></li>
+  <li>Price Put on the Line: $<%= @challenge.price / 100 %></li>
 </ul>
 
-<%= form_tag do |f| %>
-  <div class="center">
-    <%= submit_tag 'Challenge Completed?', class: 'btn waves-effect waves-light' %>
-  </div>
-<% end %>
 
-<div id="challenge-complete">
-  <h5>Who Won this Glorious Challenge?</h5>
-  <%= form_tag do |f| %>
+<div class="center-align">
+  <a class="waves-effect waves-light btn-large center" id="challenge_completed">Challenge Completed?</a>
+</div>
+
+<div id="challenge_participants_buttons" class="hide">
+  <h5 class="center-align">Who Won this Glorious Challenge?</h5>
+  <%= form_tag(challenge_path(@challenge), method: :patch) do |f| %>
     <div class="center">
       <%= submit_tag "#{@acceptor.show_full_name}" %>
     </div>
   <% end %>
 
-  <%= form_tag do |f| %>
+  <%= form_tag(challenge_path(@challenge), method: :patch) do |f| %>
     <div class="center">
       <%= submit_tag "#{@challenger.show_full_name}" %>
     </div>

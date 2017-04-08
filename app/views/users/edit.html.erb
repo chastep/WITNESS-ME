@@ -1,20 +1,35 @@
-<%= form_tag(user_path(@user), method: :patch) do |f| %>
-  <div class="input-field">
-    <%= label_tag :routing_number %>
-    <%= text_field_tag :routing_number %><br>
-  </div>
-  <div class="input-field">
-    <%= label_tag :account_number %>
-    <%= text_field_tag :account_number%><br>
-  </div>
-  <div class="input-field">
-    <%= label_tag :type %>
-    <%= text_field_tag :type%>
-  </div>
-  <div class="center">
-    <%= submit_tag 'Add Bank!', class: 'btn waves-effect waves-light' %>
-  </div>
-<% end %>
-
-<div id="logs">
+<div id="mainContainer">
+  <input type="button" id="start" value="Add Bank">
 </div>
+
+<div id="iavContainer"></div>
+
+<script type="text/javascript">
+$('#start').click(function() {
+  var iavToken = "<%= @token %>";
+  dwolla.configure('sandbox');
+  dwolla.iav.start(iavToken, {
+          container: 'iavContainer',
+          stylesheets: [
+            'http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext',
+            'http://localhost:8080/iav/customStylesheet.css'
+          ]
+        }, function(err, res) {
+    console.log('Error: ' + JSON.stringify(err) + ' -- Response: ' + JSON.stringify(res));
+    var ajaxFunc = $.ajax({
+      url: "<%= user_path(@user) %>",
+      method: 'PUT',
+      dataType: 'json',
+      data: {user: {dwolla_url: res}}
+    });
+
+    ajaxFunc.done(function(response) {
+      console.log(response);
+    });
+    ajaxFunc.fail(function(response) {
+      console.log("shits broke fam");
+    });
+
+  });
+});
+</script>
