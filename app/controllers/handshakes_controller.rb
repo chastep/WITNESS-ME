@@ -4,7 +4,9 @@ class HandshakesController < ApplicationController
 
   end
   def show
-
+    @challenge = Challenge.find(params[:id])
+    @challenger = @challenge.challenger
+    @acceptor = @challenge.acceptor
   end
 
   private

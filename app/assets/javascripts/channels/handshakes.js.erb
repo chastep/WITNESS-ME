@@ -1,30 +1,38 @@
-$(document).on('turbolinks:load', function() {
+$(document).on('ready', function() {
+  <% Challenge.all.each do |challenge| %>
+
+  App['challenge' + <%=challenge.id%>] = App.cable.subscriptions.create({channel: 'HandshakesChannel', room: <%=challenge.id%>}, {
+     connected: function() {
+     <%= ActionCable.server.broadcast "challenge-#{challenge.id}:handshake", message: "a player has appeared" %>;
+    },
+    received: function(data) {
+    console.log(data.handshakes)
+    checkHandshakes(<%= challenge.id %>, data.handshakes);
+     $("[data-challenge='" + this.challengeId + "']").css("background-color", "green");
+      return $("[data-challenge='" + this.challengeId + "']").append(data.message);
+
+    },
+
+    setChallengeId: function(challengeId) {
+      this.challengeId = challengeId;
+    }
+  });
+<% end %>
   submitNewMessage();
 });
 
-<% Challenge.all.each do |challenge| %>
-
-  App['challenge' + <%=challenge.id%>] = App.cable.subscriptions.create({channel: 'HandshakesChannel', room: <%=challenge.id%>}, {
-  received: function(data) {
-   $("[data-challenge='" + this.challengeId + "']").removeClass('hidden')
-    return $("[data-challenge='" + this.challengeId + "']").append(data.message);
-  },
-
-  setChallengeId: function(challengeId) {
-    this.challengeId = challengeId
+function checkHandshakes(challenge_id, shooken) {
+  if(shooken >= 2){
+    return location.replace("/challenges/" + challenge_id + "/edit");
   }
-});
-<% end %>
+};
 
 function submitNewMessage(){
-  $('textarea#message_content').keydown(function(event) {
-    if (event.keyCode == 13) {
-        var msg = event.target.value
-        var challengeId = $("[data-challenge]").data().challenge
-        App['room' + challengeId].setChallengeId(challengeId)
-        App['room' + challengeId].send({message: msg})
-        $('[data-textarea="message"]').val(" ")
-        return false;
-     }
-  });
+  $('a.the-shake-button').on('click', function(event) {
+        var idOfChallengeRoom = ($(this).closest('div').attr('data-challenge'));
+        $(this).hide()
+        App['challenge' + idOfChallengeRoom].setChallengeId(idOfChallengeRoom);
+        App['challenge' + idOfChallengeRoom].send({message: idOfChallengeRoom});
+       return false;
+    });
 }

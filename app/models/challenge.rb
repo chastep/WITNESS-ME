@@ -7,7 +7,7 @@ class Challenge < ApplicationRecord
   has_many :handshakes
 
   validates_presence_of :description, :price, :challenger_id, :acceptor_id
-  validates_uniqueness_of :challenger_id, scope: [:acceptor_id, :witness_id]
+  validates_uniqueness_of :challenger_id, :acceptor_id, :witness_id, scope: [:id]
 
   def generate_transfer_request(sender_url, recipient_url, value, customer_id)
     {
