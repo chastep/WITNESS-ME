@@ -40,4 +40,27 @@ describe Challenge do
     end
   end
 
+  describe "generate_transfer_request" do
+    it "creates a dwolla transfer request" do
+      expect(challenge.generate_transfer_request("url1", "url2", 5, 3)).to eq({
+      :_links => {
+      :source => {
+        :href => "url1"
+        },
+        :destination => {
+          :href => "url2"
+        }
+      },
+      :amount => {
+        :currency => "USD",
+        :value => "5"
+      },
+      :metadata => {
+        :customerId => 3,
+        :notes => "transfer initiated"
+      }
+      })
+    end
+  end
+
 end
