@@ -70,11 +70,13 @@ class ChallengesController < ApplicationController
   end
 
   def destroy
-    if @challenge.challenger_id == session[:user_id]
-      @pairing.destroy
+    @challenge = Challenge.find_by(id: params[:id])
+    if @challenge.witness.id == session[:user_id]
+      @challenge.destroy
       redirect_to current_user
     else
-      redirect_to root_path
+      @errors = ["Only the witness can cancel a challenge"]
+      render "edit"
     end
   end
 
