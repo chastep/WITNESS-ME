@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20170408225907) do
     t.integer  "acceptor_id",   null: false
     t.integer  "witness_id"
     t.integer  "winner_id"
+    t.integer  "loser_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
