@@ -1,6 +1,7 @@
 class ChallengesController < ApplicationController
 
   def new
+    @users = User.all
     @challenge = Challenge.new
   end
 
