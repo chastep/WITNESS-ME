@@ -4,12 +4,13 @@ class Challenge < ApplicationRecord
   belongs_to :acceptor, class_name: "User", foreign_key: "acceptor_id"
   belongs_to :witness, class_name: "User", foreign_key: "witness_id"
   # need to have this associations be applicable, but not process during initial challenge save
-  belongs_to :winner, class_name: "User", foreign_key: "winner_id"
-  belongs_to :loser, class_name: "User", foreign_key: "loser_id"
+  # belongs_to :winner, class_name: "User", foreign_key: "winner_id"
+  # belongs_to :loser, class_name: "User", foreign_key: "loser_id"
   has_many :handshakes
 
   validates_presence_of :description, :price, :challenger_id, :acceptor_id
   validates_uniqueness_of :challenger_id, :acceptor_id, :witness_id, scope: [:id]
+
   # would like to make this a custom method so that we can throw custom error with dollars
   validates :price, numericality: { less_than_or_equal_to: 1000, greater_than_or_equal_to: 0 }
 
@@ -33,5 +34,4 @@ class Challenge < ApplicationRecord
       }
     }
   end
-
 end
