@@ -6,6 +6,7 @@ class ChallengesController < ApplicationController
 
   def create
     @challenge = Challenge.new(challenge_params)
+    @challenge.price = @challenge.price * 100
     @challenge.challenger_id = current_user.id
     @challenge.acceptor_id = User.find_by(username: params[:challenge][:acceptor]).id
     @challenge.witness_id = User.find_by(username: params[:challenge][:witness]).id
