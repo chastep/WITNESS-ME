@@ -24,12 +24,16 @@
   <h5 class="center-align">Who Won this Glorious Challenge?</h5>
   <%= form_for @challenge, method: :patch, html: { class: "winner", id: "#{@challenge.acceptor.id}"} do |f| %>
     <div class="center">
+      <%= f.hidden_field :winner_id, value: @challenge.acceptor_id %>
+      <%= f.hidden_field :loser_id, value: @challenge.challenger_id %>
       <%= f.submit "#{@challenge.acceptor.show_full_name}" %>
     </div>
   <% end %>
 
   <%= form_for @challenge, method: :patch, html: { class: "winner", id: "#{@challenge.challenger.id}"} do |f| %>
     <div class="center" id="challenger">
+      <%= f.hidden_field :winner_id, value: @challenge.challenger_id %>
+      <%= f.hidden_field :loser_id, value: @challenge.acceptor_id %>
       <%= f.submit "#{@challenge.challenger.show_full_name}" %>
     </div>
   <% end %>

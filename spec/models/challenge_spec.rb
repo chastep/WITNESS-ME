@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Challenge do
 
-  let(:challenge) { Challenge.new(description: "This is a challenge", price: 1000, challenger_id: 1, acceptor_id: 2, witness_id: 3, winner_id: 1)}
+  let(:challenge) { Challenge.new(description: "This is a challenge", price: 1000, challenger_id: 1, acceptor_id: 2, witness_id: 3, winner_id: 1, loser_id: 2)}
 
   describe "description" do
     it "returns the description of the challenge" do
@@ -37,6 +37,12 @@ describe Challenge do
   describe "winner_id" do
     it "returns the winner_id of the challenge" do
       expect(challenge.winner_id).to eq(1)
+    end
+  end
+
+  describe "loser_id" do
+    it "returns the loser_id of the challenge" do
+      expect(challenge.loser_id).to eq(2)
     end
   end
 
