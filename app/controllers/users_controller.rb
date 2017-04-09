@@ -5,8 +5,9 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find_by(id: params[:id])
     return redirect_to new_user_path if !logged_in?
-    return redirect user_path(current_user.id) if !authorized?(params[:id])
+    return redirect user_path(@user) if !authorized?(params[:id])
   end
 
   def create

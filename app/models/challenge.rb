@@ -4,8 +4,8 @@ class Challenge < ApplicationRecord
   belongs_to :acceptor, class_name: "User", foreign_key: "acceptor_id"
   belongs_to :witness, class_name: "User", foreign_key: "witness_id"
   # need to have this associations be applicable, but not process during initial challenge save
-  # belongs_to :winner, class_name: "User", foreign_key: "winner_id"
-  # belongs_to :loser, class_name: "User", foreign_key: "loser_id"
+  belongs_to :winner, class_name: "User", foreign_key: "winner_id"
+  belongs_to :loser, class_name: "User", foreign_key: "loser_id"
   has_many :handshakes
 
   validates_presence_of :description, :price, :challenger_id, :acceptor_id

@@ -27,6 +27,10 @@ class User < ApplicationRecord
     end
   end
 
+  def all_challenges
+    self.witnessed_challenges + self.challenged_challenges + self.accepted_challenges
+  end
+
   def customer_request_body
     {
       :firstName => self.first_name,
