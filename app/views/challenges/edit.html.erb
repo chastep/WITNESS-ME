@@ -16,21 +16,21 @@
   </div>
 <% end %>
 
-<div class="center-align">
+<div class="center-align" id="challenge-complete-button">
   <a class="waves-effect waves-light btn-large center" id="challenge_completed">Challenge Completed?</a>
 </div>
 
 <div id="challenge_participants_buttons" class="hide">
   <h5 class="center-align">Who Won this Glorious Challenge?</h5>
-  <%= form_tag(challenge_path(@challenge), method: :patch) do |f| %>
+  <%= form_for @challenge, method: :patch, html: { class: "winner", id: "#{@challenge.acceptor.id}"} do |f| %>
     <div class="center">
-      <%= submit_tag "#{@challenge.acceptor.show_full_name}" %>
+      <%= f.submit "#{@challenge.acceptor.show_full_name}" %>
     </div>
   <% end %>
 
-  <%= form_tag(challenge_path(@challenge), method: :patch) do |f| %>
-    <div class="center">
-      <%= submit_tag "#{@challenge.challenger.show_full_name}" %>
+  <%= form_for @challenge, method: :patch, html: { class: "winner", id: "#{@challenge.challenger.id}"} do |f| %>
+    <div class="center" id="challenger">
+      <%= f.submit "#{@challenge.challenger.show_full_name}" %>
     </div>
   <% end %>
 </div>
