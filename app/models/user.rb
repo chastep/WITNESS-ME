@@ -35,13 +35,4 @@ class User < ApplicationRecord
     }
   end
 
-  def funding_request_body(routing_number, account_number, type)
-    {
-      :routingNumber => routing_number,
-      :accountNumber => account_number,
-      :type => type,
-      :name => self.first_name + " " + self.last_name + " - "
-    }
-  end
-
 end
