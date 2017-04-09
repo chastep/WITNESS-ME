@@ -2,9 +2,9 @@ require 'rails_helper'
 
 describe ChallengesController do
 
-  let(:user) { User.create!(first_name: "Karl", last_name: "Thomas", email: "karl@karl.com", phone: "555-555-5555", username: "KThomas", password: "password") }
+  let!(:user) { User.create!(first_name: "Karl", last_name: "Thomas", email: "karl@karl.com", phone: "555-555-5555", username: "KThomas", password: "password") }
 
-  let(:challenge) { Challenge.create!(description: "This is a challenge", price: 1000, challenger_id: 1, acceptor_id: 1, witness_id: 1, winner_id: 1)}
+  let!(:challenge) { Challenge.create!(description: "This is a challenge", price: 1000, challenger_id: 1, acceptor_id: 1, witness_id: 1, winner_id: 1)}
 
   describe "GET #new" do
     it "responds with status code 200" do
