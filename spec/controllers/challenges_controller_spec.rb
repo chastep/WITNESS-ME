@@ -10,7 +10,7 @@ describe ChallengesController do
 
   let(:user2) { User.create!(first_name: "Chase", last_name: "Stephens", email: "chase@stephens.com", phone: "555-555-5555", username: "CStephens", password: "password") }
 
-  let(:challenge) { Challenge.create!(description: "This is a challenge", price: 10, challenger_id: user.id, acceptor_id: user1.id, witness_id: user2.id, winner_id: user1.id)}
+  let(:challenge) { Challenge.create!(description: "This is a challenge", price: 10, challenger_id: user.id, acceptor_id: user1.id, witness_id: user2.id, winner_id: user1.id, loser_id: user2.id)}
 
   describe "GET #new" do
     it "responds with status code 200" do
