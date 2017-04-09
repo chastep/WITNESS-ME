@@ -8,6 +8,7 @@
 
 <script type="text/javascript">
 $('#start').click(function() {
+  $(this).hide();
   var iavToken = "<%= @token %>";
   dwolla.configure('sandbox');
   dwolla.iav.start(iavToken, {
@@ -27,7 +28,10 @@ $('#start').click(function() {
 
     ajaxFunc.done(function(response) {
       console.log(response);
-      location.replace("<%= user_path(@user) %>")
+      setTimeout(
+        function() {
+          location.replace("<%= user_path(@user) %>");
+        }, 3000);
     });
     ajaxFunc.fail(function(response) {
       console.log("shits broke fam");
