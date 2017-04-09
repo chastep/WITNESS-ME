@@ -39,6 +39,11 @@ class ChallengesController < ApplicationController
 
   def update
     @challenge = Challenge.find_by(id: params[:id])
+    p "--------------------------------------------"
+    p @challenge
+    p "--------------------------------------------"
+    @challenge.update_attributes(winner_id: params[:challenge][:winner_id], loser_id: params[:challenge][:loser_id])
+    @challenge.save
     value = @challenge.price / 100
     # transfer for each user to the bucket
     # start with challenger
