@@ -1,9 +1,14 @@
 class User < ApplicationRecord
-  include BCrypt
-
   has_secure_password
 
-  has_many :challenges
+  has_many :witnessed_challenges, class_name: "Challenge", foreign_key: "witness_id"
+  has_many :challenged_challenges, class_name: "Challenge", foreign_key: "challenger_id"
+  has_many :accepted_challenges, class_name: "Challenge", foreign_key: "acceptor_id"
+  has_many :won_challenges, class_name: "Challenge", foreign_key: "winner_id"
+  has_many :handshakes
+
+  validates_presence_of :first_name, :last_name, :email, :phone, :username
+  validates_uniqueness_of :email, :username
 
   def full_name
     @full_name
@@ -15,7 +20,11 @@ class User < ApplicationRecord
 
   def split_name(full_name)
     self.first_name = full_name.split(" ")[0]
-    self.last_name = full_name.split(" ")[1]
+    if self.last_name = full_name.split(" ")[1]
+
+    else
+      self.last_name = "Smith"
+    end
   end
 
   def customer_request_body

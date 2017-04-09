@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
 
   def log_in(user_id)
-    cookies.signed[:user_id] = user_id
+    session[:user_id] = user_id
   end
 
   def authorized?(integer_id)

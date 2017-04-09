@@ -1,3 +1,5 @@
+<%= render "shared/errors" %>
+
 <%= form_tag(challenges_path) do |f| %>
   <div class="input-field">
     <%= label_tag :description %>
@@ -10,11 +12,11 @@
   <!-- need to make these drop downs so we can select a user and not type in a number -->
   <div class="input-field">
     <%= label_tag :acceptor %>
-    <%= text_field(:challenge, :acceptor_id) %><br>
+    <%= text_field(:challenge, :acceptor) %><br>
   </div>
   <div class="input-field">
     <%= label_tag :witness %>
-    <%= text_field(:challenge, :witness_id) %><br>
+    <%= text_field(:challenge, :witness) %><br>
   </div>
   <!-- end of note -->
   <div class="center">

@@ -1,5 +1,7 @@
-<div id="mainContainer">
-  <input type="button" id="start" value="Add Bank">
+<div class="center-align">
+  <div id="mainContainer">
+    <input type="button" id="start" value="Add Bank">
+  </div>
 </div>
 
 <div id="iavContainer"></div>
@@ -25,6 +27,7 @@ $('#start').click(function() {
 
     ajaxFunc.done(function(response) {
       console.log(response);
+      location.replace("<%= user_path(@user) %>")
     });
     ajaxFunc.fail(function(response) {
       console.log("shits broke fam");
@@ -33,3 +36,4 @@ $('#start').click(function() {
   });
 });
 </script>
+
