@@ -7,6 +7,7 @@ class CreateChallenges < ActiveRecord::Migration[5.0]
       t.integer :acceptor_id, null: false
       t.integer :witness_id
       t.integer :winner_id
+      t.integer :loser_id
 
       t.timestamps null: false
     end

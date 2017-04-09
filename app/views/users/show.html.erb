@@ -1,1 +1,50 @@
-<%= link_to 'Start a Challenge!', new_challenge_path %>
+<div class="row">
+  <div class="col s10 push-s1">
+    <div class="card horizontal">
+      <div class="card-image">
+        <img src="<%= @user.profile_picture %>" alt="avatar" class="avatar-image">
+      </div>
+        <div class="card-content">
+          <span><H5><strong>Full Name:</strong> <%= @user.show_full_name %></H5></span><br>
+          <span><h5><strong>Username:</strong> <%= @user.username %></h5></span><br>
+          <span><h5><strong>Email:</strong> <%= @user.email %></h5></span>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="center-align">
+  <%= button_to "Start a Challenge!", new_challenge_path, method: :get %>
+</div>
+
+<div class="row">
+  <div class="col s10 push-s1">
+    <h1>Previous Challenges</h1>
+    <ul>
+      <% @user.all_challenges.each do |challenge| %>
+        <li id="<%= challenge.id %>">
+          <div class="card horizontal">
+            <div class="card-stacked">
+              <div class="card-content">
+                <span><H5><strong>Date:</strong> <%= challenge.created_at.strftime('%A, %b %d, %Y') %></H5></span><br>
+                <span><h5><strong>Time:</strong> <%= challenge.created_at.strftime('%I:%M %p') %></h5></span><br>
+                <span><h5><strong>Description:</strong> <%= challenge.description %></h5></span><br>
+                <span><h5><strong>Role:</strong>
+                  <% if challenge.challenger.id == @user.id %>
+                    Challenger
+                  <% elsif challenge.acceptor.id == @user.id %>
+                    Acceptor
+                  <% else %>
+                    Witness
+                  <% end %>
+                </h5></span>
+              </div>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
