@@ -57,27 +57,16 @@ describe UsersController do
     end
   end
 
-  # describe "POST #create" do
-  #   it "responds with status code 302" do
-  #     post :create, {user: {name: "Karl", email: "karl@karl.com", password: "password"} }
-  #     expect(response.code).to eq '302'
-  #   end
+  describe "POST #create" do
 
-  #   it "creates a new user in the database" do
-  #     users_start = User.all.count
-  #     post :create, {user: {name: "Karl", email: "karl@karl.com", password: "password"} }
-  #     expect(User.all.count).to be > (users_start)
-  #   end
+  end
 
-  #   it "assigns the newly created user as @user" do
-  #     post :create, {user: {name: "Karl", email: "karl@karl.com", password: "password"} }
-  #     expect(assigns(:user)).to be_an_instance_of User
+  describe "GET #edit" do
 
-  #   end
+  end
 
-  #   it "redirects to the root path" do
-  #     post :create, {user: {name: "Karl", email: "karl@karl.com", password: "password"} }
-  #     expect(response).to redirect_to root_path
-  #   end
-  # end
+  describe "PUT #update" do
+
+  end
+
 end
