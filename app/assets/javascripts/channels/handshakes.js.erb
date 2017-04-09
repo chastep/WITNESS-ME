@@ -1,23 +1,22 @@
 $(document).on('ready', function() {
   <% Challenge.all.each do |challenge| %>
+    App['challenge' + <%=challenge.id%>] = App.cable.subscriptions.create({channel: 'HandshakesChannel', room: <%=challenge.id%>}, {
+       connected: function() {
+       <%= ActionCable.server.broadcast "challenge-#{challenge.id}:handshake", message: "a player has appeared" %>;
+      },
+      received: function(data) {
+      console.log(data.handshakes)
+      checkHandshakes(<%= challenge.id %>, data.handshakes);
+       $("[data-challenge='" + this.challengeId + "']").css("background-color", "green");
+        return $("[data-challenge='" + this.challengeId + "']").append(data.message);
 
-  App['challenge' + <%=challenge.id%>] = App.cable.subscriptions.create({channel: 'HandshakesChannel', room: <%=challenge.id%>}, {
-     connected: function() {
-     <%= ActionCable.server.broadcast "challenge-#{challenge.id}:handshake", message: "a player has appeared" %>;
-    },
-    received: function(data) {
-    console.log(data.handshakes)
-    checkHandshakes(<%= challenge.id %>, data.handshakes);
-     $("[data-challenge='" + this.challengeId + "']").css("background-color", "green");
-      return $("[data-challenge='" + this.challengeId + "']").append(data.message);
+      },
 
-    },
-
-    setChallengeId: function(challengeId) {
-      this.challengeId = challengeId;
-    }
-  });
-<% end %>
+      setChallengeId: function(challengeId) {
+        this.challengeId = challengeId;
+      }
+    });
+  <% end %>
   submitNewMessage();
 });
 
