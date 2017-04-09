@@ -7,12 +7,12 @@ class ChallengesController < ApplicationController
   def create
     @challenge = Challenge.new(challenge_params)
     @challenge.challenger_id = current_user.id
-    # @challenge.acceptor_id = User.find_by(username: params[:acceptor_id])
-    # @challenge.witness_id = User.find_by(username: params[:witness_id])
+    @challenge.acceptor_id = User.find_by(username: params[:challenge][:acceptor]).id
+    @challenge.witness_id = User.find_by(username: params[:challenge][:witness]).id
     if @challenge.save
       redirect_to handshake_path(@challenge)
     else
-      @errors = @user.errors.full_messages
+      @errors = @challenge.errors.full_messages
       render 'new'
     end
   end
