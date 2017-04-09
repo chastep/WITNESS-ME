@@ -14,4 +14,12 @@ RSpec.describe "Routing to users", :type => :routing do
     expect(:post => "/users").to route_to("users#create")
   end
 
+  it "routes GET /users/1/edit to users#edit" do
+    expect(:get => "/users/1/edit").to route_to("users#edit", :id => "1")
+  end
+
+  it "routes PUT /users/1 to users#update" do
+    expect(:put => "/users/1").to route_to("users#update", :id => "1")
+  end
+
 end

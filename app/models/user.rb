@@ -27,20 +27,15 @@ class User < ApplicationRecord
     end
   end
 
+  def all_challenges
+    self.witnessed_challenges + self.challenged_challenges + self.accepted_challenges
+  end
+
   def customer_request_body
     {
       :firstName => self.first_name,
       :lastName => self.last_name,
       :email => self.email
-    }
-  end
-
-  def funding_request_body(routing_number, account_number, type)
-    {
-      :routingNumber => routing_number,
-      :accountNumber => account_number,
-      :type => type,
-      :name => self.first_name + " " + self.last_name + " - "
     }
   end
 

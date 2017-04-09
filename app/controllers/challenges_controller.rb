@@ -1,11 +1,13 @@
 class ChallengesController < ApplicationController
 
   def new
+    @users = User.all
     @challenge = Challenge.new
   end
 
   def create
     @challenge = Challenge.new(challenge_params)
+    @challenge.price = @challenge.price * 100
     @challenge.challenger_id = current_user.id
     @challenge.acceptor_id = User.find_by(username: params[:challenge][:acceptor]).id
     if params[:challenge][:witness] != ""
@@ -21,14 +23,18 @@ class ChallengesController < ApplicationController
 
   def show
     @challenge = Challenge.find(params[:id])
+    # @challenger = User.find_by(id: @challenge.challenger_id)
+    # @acceptor = User.find_by(id: @challenge.acceptor_id)
+    # @witness = User.find_by(id: @challenge.witness_id)
+    # @winner = User.find_by(id: @challenge.winner_id)
     render 'show'
   end
 
   def edit
     @challenge = Challenge.find_by(id: params[:id])
-    @challenger = User.find_by(id: @challenge.challenger_id)
-    @acceptor = User.find_by(id: @challenge.acceptor_id)
-    @witness = User.find_by(id: @challenge.witness_id)
+    # @challenger = User.find_by(id: @challenge.challenger_id)
+    # @acceptor = User.find_by(id: @challenge.acceptor_id)
+    # @witness = User.find_by(id: @challenge.witness_id)
   end
 
   def update
@@ -60,17 +66,19 @@ class ChallengesController < ApplicationController
     # bucket = app_token.get "/"
     # bucket_url = bucket._links.account.href
     winner_transfer_request = @challenge.generate_transfer_request($bucket_url, @winner.dwolla_url, pot, @winner.dwolla_id)
-    winner_transfer = app_token.post "transfers", transfer_request
+    winner_transfer = $app_token.post "transfers", winner_transfer_request
     # -----------------------------------------------
     render 'show'
   end
 
   def destroy
-    if @challenge.challenger_id == session[:user_id]
-      @pairing.destroy
+    @challenge = Challenge.find_by(id: params[:id])
+    if @challenge.witness.id == session[:user_id]
+      @challenge.destroy
       redirect_to current_user
     else
-      redirect_to root_path
+      @errors = ["Only the witness can cancel a challenge"]
+      render "edit"
     end
   end
 
