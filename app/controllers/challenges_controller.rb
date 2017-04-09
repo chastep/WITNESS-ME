@@ -8,7 +8,9 @@ class ChallengesController < ApplicationController
     @challenge = Challenge.new(challenge_params)
     @challenge.challenger_id = current_user.id
     @challenge.acceptor_id = User.find_by(username: params[:challenge][:acceptor]).id
-    @challenge.witness_id = User.find_by(username: params[:challenge][:witness]).id
+    if params[:challenge][:witness] != ""
+      @challenge.witness_id = User.find_by(username: params[:challenge][:witness]).id
+    end
     if @challenge.save
       redirect_to handshake_path(@challenge)
     else
@@ -74,7 +76,7 @@ class ChallengesController < ApplicationController
 
   private
     def challenge_params
-      params.require(:challenge).permit(:description, :price, :acceptor_id, :witness_id)
+      params.require(:challenge).permit(:description, :price)
     end
 
 end
