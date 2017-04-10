@@ -1,16 +1,19 @@
 class HandshakesController < ApplicationController
+  before_action :reroute?, only: [:show]
+
   def create
-
-
   end
+
   def show
-    @challenge = Challenge.find(params[:id])
-    @challenger = @challenge.challenger
-    @acceptor = @challenge.acceptor
+
   end
 
   private
-    def reroute
+    def reroute?
+      @challenge = Challenge.find(params[:id])
+      @challenger = @challenge.challenger
+      @acceptor = @challenge.acceptor
+      return redirect_to root_path if !check_id(current_user)
     end
 
     def check_id(user)
