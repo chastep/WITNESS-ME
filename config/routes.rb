@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get '/signup' => 'users#new'
   # post '/users' => 'users#create'
 
-  mount ActionCable.server, at: "/cable"
+  post 'notifications/notify' => 'notifications#notify'
 
+  mount ActionCable.server, at: "/cable"
 end
