@@ -40,7 +40,7 @@ class ChallengesController < ApplicationController
     # transfer for each user to the bucket
     # start with challenger
     @challenger = User.find_by(id: @challenge.challenger_id)
-    challenger_transfer_request = @challenge.generate_transfer_request( @challenger.dwolla_url, $bucket_url, value, $witness_dwolla_id)
+    challenger_transfer_request = @challenge.generate_transfer_request(@challenger.dwolla_url, $bucket_url, value, $witness_dwolla_id)
     challenger_transfer_to_bucket = $app_token.post "transfers", challenger_transfer_request
     # -----------------------------------------------
     # acceptor tranfer to bucket
