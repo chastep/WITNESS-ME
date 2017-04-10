@@ -16,9 +16,9 @@ class UsersController < ApplicationController
     @user.split_name(params[:user][:full_name])
     # create dwolla customer account and id
     request_body = @user.customer_request_body
-    customer = $app_token.post "customers", request_body
+    customer = APP_TOKEN.post "customers", request_body
     @user.dwolla_url = customer.headers[:location]
-    @user.dwolla_id = $users._embedded.customers[0].id
+    @user.dwolla_id = DWOLLA_USERS._embedded.customers[0].id
     if @user.save
       session[:user_id] = @user.id
       redirect_to edit_user_path(@user)
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
   def edit
     @user = User.find_by(id: params[:id])
     customer_url = @user.dwolla_url
-    customer = $app_token.post "#{customer_url}/iav-token"
+    customer = APP_TOKEN.post "#{customer_url}/iav-token"
     @token = customer.token
   end
 
