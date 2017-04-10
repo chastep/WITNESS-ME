@@ -2,7 +2,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_user, :logged_in?, :log_in, :log_out, :authorized?
 
-
   def log_out
     session.delete(:user_id)
     @current_user = nil
