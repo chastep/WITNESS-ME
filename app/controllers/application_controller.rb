@@ -45,4 +45,5 @@ class ApplicationController < ActionController::Base
     # witness org id
     main = APP_TOKEN.get bucket_location
     WITNESS_DWOLLA_ID = main.id
+
 end
