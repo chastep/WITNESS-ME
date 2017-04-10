@@ -1,12 +1,13 @@
-$(document).on('ready', function() {
-  <% Challenge.all.each do |challenge| %>
-    App['challenge' + <%=challenge.id%>] = App.cable.subscriptions.create({channel: 'HandshakesChannel', room: <%=challenge.id%>}, {
+$(document).on('turbolinks:load', function() {
+  var pathId = location.pathname.replace( /^\D+/g, '');
+  console.log(pathId);
+    App['challenge' + pathId] = App.cable.subscriptions.create({channel: 'HandshakesChannel', room: pathId}, {
        connected: function() {
-       <%= ActionCable.server.broadcast "challenge-#{challenge.id}:handshake", message: "a player has appeared" %>;
+
       },
       received: function(data) {
       console.log(data.handshakes)
-      checkHandshakes(<%= challenge.id %>, data.handshakes);
+      checkHandshakes(pathId, data.handshakes);
        $("[data-challenge='" + this.challengeId + "']").css("background-color", "green");
         return $("[data-challenge='" + this.challengeId + "']").append(data.message);
 
@@ -16,7 +17,6 @@ $(document).on('ready', function() {
         this.challengeId = challengeId;
       }
     });
-  <% end %>
   submitNewMessage();
 });
 
