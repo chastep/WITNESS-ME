@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  skip_before_action :authenticate_user!
+  skip_before_action :authenticate_user!, except: [:show]
+
   def new
     if logged_in?
       return redirect_to user_path(current_user)
