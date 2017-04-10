@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+  skip_before_action :authenticate_user!
   def new
     if logged_in?
       return redirect_to user_path(current_user)
@@ -9,7 +9,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    return redirect_to new_user_path if !logged_in?
     @user = User.find_by(id: current_user.id)
     return redirect_to user_path(@user) if !authorized?(params[:id])
   end
