@@ -1,4 +1,5 @@
-$(document).on('ready', function() {
+$(document).on('turbolinks:load', function() {
+  console.log(location.pathname);
   <% Challenge.all.each do |challenge| %>
     App['challenge' + <%=challenge.id%>] = App.cable.subscriptions.create({channel: 'HandshakesChannel', room: <%=challenge.id%>}, {
        connected: function() {
