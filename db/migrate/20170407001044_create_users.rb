@@ -6,7 +6,7 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.string :email, null: false
       t.string :phone, null: false
       t.string :username, null: false
-      t.string :profile_picture
+      t.string :profile_picture, :default => Faker::Avatar.image
       t.string :password_digest, null: false
       t.string :dwolla_url
       t.string :dwolla_id

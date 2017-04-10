@@ -8,10 +8,10 @@
   <li>Witness: <%= @challenge.witness.show_full_name %></li>
   <br>
   <li><u>WINNER:</u></li>
-  <li>Outcome: <%= @challenge.winner.show_full_name %> was VICTORIOUS! <%= @challenge.loser.show_full_name %> wasn't so lucky....</li>
+  <li>Outcome: <%= @winner.show_full_name %> was VICTORIOUS! <%= @loser.show_full_name %> wasn't so lucky....</li>
   <br>
   <li>Date: <%= @challenge.created_at.strftime("%a, %b %d, %Y") %></li>
-  <li>Price Paid from <%= @challenge.loser.show_full_name %> to <%= @challenge.winner.show_full_name %> : $<%= @challenge.price / 100 %></li>
+  <li>Price Paid from <%= @loser.show_full_name %> to <%= @winner.show_full_name %> : $<%= @challenge.price / 100 %></li>
 </ul>
 
 
