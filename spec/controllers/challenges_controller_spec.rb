@@ -13,6 +13,11 @@ describe ChallengesController do
   let(:challenge) { Challenge.create!(description: "This is a challenge", price: 10, challenger_id: user.id, acceptor_id: user1.id, witness_id: user2.id, winner_id: user1.id, loser_id: user2.id)}
 
   describe "GET #new" do
+
+    before(:each) do
+      session[:user_id] = user.id
+    end
+
     it "responds with status code 200" do
       get :new
       expect(response).to have_http_status(200)
@@ -30,6 +35,11 @@ describe ChallengesController do
   end
 
   describe "GET #show" do
+
+    before(:each) do
+      session[:user_id] = user.id
+    end
+
     it "responds with status code 200" do
       get :show, { id: challenge.id }
       expect(response).to have_http_status(200)

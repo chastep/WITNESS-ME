@@ -27,7 +27,23 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def authenticate_user!
-    redirect_to root_path unless logged_in?
-  end
+    def authenticate_user!
+      redirect_to root_path unless logged_in?
+    end
+
+    # dwolla variables
+    # ---------------------------
+    # create an application token
+    APP_TOKEN = $dwolla.auths.client
+    # all dwolla users in the application
+    DWOLLA_USERS = APP_TOKEN.get "customers"
+    # witness org funding account location
+    root = APP_TOKEN.get "/"
+    bucket_location = root._links.account.href
+    bucket = APP_TOKEN.get "#{bucket_location}/funding-sources"
+    BUCKET_URL = bucket._embedded[:"funding-sources"][0][:"_links"][:"self"][:"href"]
+    # witness org id
+    main = APP_TOKEN.get bucket_location
+    WITNESS_DWOLLA_ID = main.id
+
 end

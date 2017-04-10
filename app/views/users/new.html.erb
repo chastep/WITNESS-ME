@@ -1,4 +1,5 @@
 <div id="register">
+  <h4>Register Here!</h4>
   <%= render partial: 'shared/errors', locals: {errors: @errors} %>
   <div class="row">
     <div class="card-panel">
@@ -11,6 +12,10 @@
           <div class="input-field">
             <%= f.text_field :username, id: 'username' %><br>
             <%= f.label :username %>
+          </div>
+          <div class="input-field">
+            <%= f.text_field :profile_picture, id: 'profile_picture' %><br>
+            <%= f.label :profile_picture %>
           </div>
           <div class="input-field">
             <%= f.text_field :phone, id: 'phone' %><br>
