@@ -25,6 +25,7 @@ class UsersController < ApplicationController
     @user.dwolla_id = DWOLLA_USERS._embedded.customers[0].id
     if @user.save
       session[:user_id] = @user.id
+      UserMailer.welcome_email(@user).deliver_now
       redirect_to edit_user_path(@user)
     else
       @errors = @user.errors.full_messages
