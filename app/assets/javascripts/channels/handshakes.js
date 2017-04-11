@@ -97,7 +97,6 @@ function submitNewMessage(){
       return false;
     });
   }
-<<<<<<< HEAD:app/assets/javascripts/channels/handshakes.js.erb
 }
 
 function unhideHand(elem){
@@ -125,7 +124,5 @@ function rotateAnimation(el,speed){
   if(degrees == 0){
     degrees = 90;
   }
-}
-=======
 };
->>>>>>> master:app/assets/javascripts/channels/handshakes.js
+
