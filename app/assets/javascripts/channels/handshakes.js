@@ -1,3 +1,7 @@
+//= require cable
+//= require_self
+//= require_tree .
+
 $(document).on('ready', function() {
   console.log("hello");
   console.log(location.pathname);
