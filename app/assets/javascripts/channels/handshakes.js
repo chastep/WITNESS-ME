@@ -11,7 +11,7 @@ $(document).on('ready', function() {
 
     App['challenge' + pathId] = App.cable.subscriptions.create({channel: 'HandshakesChannel', room: pathId}, {
        connected: function() {
-        console.log("user connected")
+        console.log("user connected");
       },
 
       received: function(data) {
@@ -31,21 +31,22 @@ $(document).on('ready', function() {
       App['challenge' + pathId].setChallengeId(pathId);
       App['challenge' + pathId].send({emailOfUser: email});
     })
-    submitNewMessage();
+    // submitNewMessage();
+
   }
 });
 
 function splitCookieString(cookies){
   return cookies.split(" ");
-}
+};
 
 function isWitness(cookieArray){
-  var regexedArray = []
+  var regexedArray = [];
   cookieArray.forEach(function(cookie){
-    var matched = cookie.match(/.*=(.*)/)[1]
+    var matched = cookie.match(/.*=(.*)/)[1];
     regexedArray.push(matched.replace(";",''));
   });
-  return(regexedArray[0] === regexedArray[1])
+  return(regexedArray[0] === regexedArray[1]);
 }
 
 function isHandshakePath(path){
@@ -64,7 +65,8 @@ function submitNewMessage(){
   if(isWitness(splitCookieString(document.cookie))){
     $buttonContainer.append("let your friends shake");
     $button.remove();
-  } else {
+  }
+  else {
     $button.on('click', function(event) {
       var idOfChallengeRoom = $buttonContainer.attr('data-challenge');
       $button.hide();
@@ -74,4 +76,4 @@ function submitNewMessage(){
       return false;
     });
   }
-}
+};
