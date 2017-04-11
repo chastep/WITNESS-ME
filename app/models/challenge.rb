@@ -36,6 +36,6 @@ class Challenge < ApplicationRecord
   end
 
   def not_completed?
-    self.winner_id == nil && self.loser_id == nil
+    (self.winner_id == nil || self.winner_id == "" ) && (self.loser_id == nil || self.loser_id == "" )
   end
 end
