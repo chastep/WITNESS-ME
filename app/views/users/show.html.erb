@@ -7,7 +7,10 @@
         <div class="card-content">
           <span><H5><strong>Full Name:</strong> <%= @user.show_full_name %></H5></span><br>
           <span><h5><strong>Username:</strong> <%= @user.username %></h5></span><br>
-          <span><h5><strong>Email:</strong> <%= @user.email %></h5></span>
+          <span><h5><strong>Email:</strong> <%= @user.email %></h5></span><br>
+          <% if !@user.dwolla_url.include? "funding" %>
+            <span><h5><strong>Add Bank Info: </strong><%= link_to 'Click Here', edit_user_path(@user) %></h5></span>
+          <% end %>
         </div>
     </div>
   </div>

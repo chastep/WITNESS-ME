@@ -44,6 +44,18 @@ class User < ApplicationRecord
     return completed
   end
 
+  def has_shook?(challenge)
+    # return true if challenger user has already created a handshake for that challenge, false otherwise
+    p "---------------------------------------"
+    shake = Handshake.where(challenge_id: challenge.id, user_id: self.id)
+    p shake
+    if shake.empty?
+      return false
+    else
+      return true
+    end
+  end
+
   def customer_request_body
     {
       :firstName => self.first_name,
