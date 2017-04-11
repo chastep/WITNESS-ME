@@ -36,6 +36,7 @@ class ChallengesController < ApplicationController
   def edit
     return redirect_to new_user_path if !logged_in?
     @challenge = Challenge.find_by(id: params[:id])
+    return redirect_to handshake_path(@challenge) if !have_already_shaken?(shake_count)
   end
 
   def update

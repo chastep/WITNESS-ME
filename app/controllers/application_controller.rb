@@ -33,6 +33,15 @@ class ApplicationController < ActionController::Base
       redirect_to root_path unless logged_in?
     end
 
+    def shake_count
+      shakes = Handshake.where(challenge_id: @challenge.id).count
+      return shakes
+    end
+
+    def have_already_shaken?(count)
+      return count >= 2
+    end
+
     # dwolla variables
     # ---------------------------
     # create an application token

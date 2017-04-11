@@ -22,12 +22,12 @@ class HandshakesController < ApplicationController
       return (user == @challenge.challenger || user == @challenge.witness || user == @challenge.acceptor)
     end
 
-    def shake_count
-      shakes = Handshake.where(challenge_id: @challenge.id).count
-      return shakes
-    end
+    # def shake_count
+    #   shakes = Handshake.where(challenge_id: @challenge.id).count
+    #   return shakes
+    # end
 
-    def have_already_shaken?(count)
-      return count >= 2
-    end
+    # def have_already_shaken?(count)
+    #   return count >= 2
+    # end
 end
