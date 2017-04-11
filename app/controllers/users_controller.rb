@@ -41,6 +41,7 @@ class UsersController < ApplicationController
     else
       customer_url = @user.dwolla_url
       customer = APP_TOKEN.post "#{customer_url}/iav-token"
+      @app_id = WITNESS_DWOLLA_ID
       @token = customer.token
     end
   end
