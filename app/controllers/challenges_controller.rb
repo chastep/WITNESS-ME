@@ -1,4 +1,5 @@
 class ChallengesController < ApplicationController
+  include Notifiable
 
   def new
     return redirect_to new_user_path if !logged_in?
@@ -16,6 +17,7 @@ class ChallengesController < ApplicationController
       @challenge.witness_id = User.find_by(username: params[:challenge][:witness]).id
     end
     if @challenge.save
+      notify(@challenge, handshake_path(@challenge))
       redirect_to handshake_path(@challenge)
     else
       @errors = @challenge.errors.full_messages
