@@ -32,7 +32,6 @@ $(document).on('ready', function() {
       App['challenge' + pathId].send();
     })
     submitNewMessage();
-
   }
 });
 
