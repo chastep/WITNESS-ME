@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :challenged_challenges, class_name: "Challenge", foreign_key: "challenger_id"
   has_many :accepted_challenges, class_name: "Challenge", foreign_key: "acceptor_id"
   has_many :won_challenges, class_name: "Challenge", foreign_key: "winner_id"
+  has_many :lost_challenges, class_name: "Challenge", foreign_key: "loser_id"
   has_many :handshakes
 
   validates_presence_of :first_name, :last_name, :email, :phone, :username
@@ -29,6 +30,32 @@ class User < ApplicationRecord
 
   def all_challenges
     self.witnessed_challenges + self.challenged_challenges + self.accepted_challenges
+  end
+
+  def pending_challenges
+    personal_challenges = self.all_challenges
+    pending = personal_challenges.select { |challenge| challenge.winner_id == nil && challenge.loser_id == nil }
+    return pending
+  end
+
+  def completed_challenges
+    personal_challenges = self.all_challenges
+    completed = personal_challenges.select { |challenge| challenge.winner_id != nil && challenge.loser_id != nil }
+    return completed
+  end
+
+  def has_shook?(challenge)
+    # return true if challenger user has already created a handshake for that challenge, false otherwise
+    shake = Handshake.where(challenge_id: challenge.id, user_id: self.id)
+    if shake.empty?
+      return false
+    else
+      return true
+    end
+  end
+
+  def can_challenge?
+    self.dwolla_url.include? "funding"
   end
 
   def customer_request_body

@@ -34,4 +34,8 @@ class Challenge < ApplicationRecord
       }
     }
   end
+
+  def not_completed?
+    self.winner_id == nil && self.loser_id == nil
+  end
 end
