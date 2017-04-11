@@ -14,10 +14,11 @@
 </div>
 
 
-
-<div class="center-align">
-  <%= button_to "Start a Challenge!", new_challenge_path, method: :get %>
-</div>
+<%= form_tag(new_challenge_path) do %>
+  <div class="center">
+    <%= submit_tag 'New Challenge', class: 'btn waves-effect waves-light' %>
+  </div>
+<% end %>
 
 <div class="row">
   <div class="col s10 push-s1">
@@ -27,7 +28,7 @@
         <li id="<%= challenge.id %>">
           <div class="card horizontal">
             <div class="card-stacked">
-              <div class="card-content">
+              <div class="card-content challenge-content">
                 <span><H5><strong>Date:</strong> <%= challenge.created_at.strftime('%A, %b %d, %Y') %></H5></span><br>
                 <span><h5><strong>Time:</strong> <%= challenge.created_at.strftime('%I:%M %p') %></h5></span><br>
                 <span><h5><strong>Description:</strong> <%= challenge.description %></h5></span><br>

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  skip_before_action :authenticate_user!
+  skip_before_action :authenticate_user!, except: [:show]
+
   def new
     if logged_in?
       return redirect_to user_path(current_user)
@@ -40,6 +41,7 @@ class UsersController < ApplicationController
     else
       customer_url = @user.dwolla_url
       customer = APP_TOKEN.post "#{customer_url}/iav-token"
+      @login_url = "https://sandbox.dwolla.com/oauth/v2/authenticate?client_id=" + ENV["DWOLLA_APP_KEY"] + "&response_type=code&redirect_uri=http://localhost:3000/users/new&scope=AccountInfoFull&dwolla_landing=login"
       @token = customer.token
     end
   end

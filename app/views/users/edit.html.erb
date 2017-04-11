@@ -1,6 +1,11 @@
+<h4 class="center-align">Integrate Dwolla Below:</h4>
+<br>
 <div class="center-align">
-  <div id="mainContainer">
-    <input type="button" id="start" value="Add Bank">
+  <div id="add_bank">
+    <input type="button" id="start" value="Add Bank to Dwolla Account" class="waves-effect waves-light btn">
+  </div><br>
+  <div class="center-align" id="already_a_dwolla_user">
+    <%= button_to("Link your Existing Dwolla Account", "#{@login_url}", {class: "waves-effect waves-light btn"}) %>
   </div>
 </div>
 
@@ -8,7 +13,8 @@
 
 <script type="text/javascript">
 $('#start').click(function() {
-  $(this).hide();
+  $(this).closest('#add_bank').hide();
+  $('#already_a_dwolla_user').hide();
   var iavToken = "<%= @token %>";
   dwolla.configure('sandbox');
   dwolla.iav.start(iavToken, {

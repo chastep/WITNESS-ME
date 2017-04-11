@@ -4,21 +4,29 @@ $(document).on('ready', function() {
   console.log(window.location.pathname);
   if(isHandshakePath(location.pathname)){
     var pathId = location.pathname.replace( /^\D+/g, '');
-      App['challenge' + pathId] = App.cable.subscriptions.create({channel: 'HandshakesChannel', room: pathId}, {
-         connected: function() {
 
-        },
+    App['challenge' + pathId] = App.cable.subscriptions.create({channel: 'HandshakesChannel', room: pathId}, {
+       connected: function() {
 
-        received: function(data) {
-          checkHandshakes(pathId, data.handshakes);
-            $("[data-challenge='" + this.challengeId + "']").css("background-color", "green");
-            return $("[data-challenge='" + this.challengeId + "']").append(data.message);
-        },
+      },
 
-        setChallengeId: function(challengeId) {
-          this.challengeId = challengeId;
-        }
-      });
+      received: function(data) {
+        console.log(data);
+        checkHandshakes(pathId, data.handshakes);
+          $("[data-challenge='" + this.challengeId + "']").css("background-color", "green");
+          return $("[data-challenge='" + this.challengeId + "']").append(data.message);
+      },
+
+      setChallengeId: function(challengeId) {
+        this.challengeId = challengeId;
+      }
+    });
+    $(window).load(function(){
+      var email = $('div.panel-body').attr('data-email');
+      console.log(email)
+      App['challenge' + pathId].setChallengeId(pathId);
+      App['challenge' + pathId].send({emailOfUser: email});
+    })
     submitNewMessage();
   }
 });
