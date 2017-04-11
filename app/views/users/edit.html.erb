@@ -2,10 +2,10 @@
 <br>
 <div class="center-align">
   <div id="add_bank">
-    <input type="button" id="start" value="Add Bank" class="waves-effect waves-light btn">
+    <input type="button" id="start" value="Add Bank to Dwolla Account" class="waves-effect waves-light btn">
   </div><br>
   <div class="center-align" id="already_a_dwolla_user">
-    <%= button_to("Link your Existing Dwolla Account", "https://sandbox.dwolla.com/oauth/v2/authenticate?client_id=" + ENV["DWOLLA_APP_KEY"] + "&response_type=code&redirect_uri=http://localhost:3000/users/new&scope=AccountInfoFull&dwolla_landing=login", {class: "waves-effect waves-light btn"}) %>
+    <%= button_to("Link your Existing Dwolla Account", "#{@login_url}", {class: "waves-effect waves-light btn"}) %>
   </div>
 </div>
 

@@ -41,7 +41,7 @@ class UsersController < ApplicationController
     else
       customer_url = @user.dwolla_url
       customer = APP_TOKEN.post "#{customer_url}/iav-token"
-      @app_id = WITNESS_DWOLLA_ID
+      @login_url = "https://sandbox.dwolla.com/oauth/v2/authenticate?client_id=" + ENV["DWOLLA_APP_KEY"] + "&response_type=code&redirect_uri=http://localhost:3000/users/new&scope=AccountInfoFull&dwolla_landing=login"
       @token = customer.token
     end
   end
