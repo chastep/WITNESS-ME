@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
-  helper_method :current_user, :logged_in?, :log_in, :log_out, :authorized?
+  helper_method :current_user, :logged_in?, :log_in, :log_out, :authorized?, :shake_count
   before_action :authenticate_user!
 
   def log_out
@@ -31,6 +31,15 @@ class ApplicationController < ActionController::Base
 
     def authenticate_user!
       redirect_to root_path unless logged_in?
+    end
+
+    def shake_count
+      shakes = Handshake.where(challenge_id: @challenge.id).count
+      return shakes
+    end
+
+    def have_already_shaken?(count)
+      return count >= 2
     end
 
     # dwolla variables
