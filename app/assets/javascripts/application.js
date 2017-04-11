@@ -16,8 +16,8 @@
 //= require turbolinks
 //= require_tree ./channels
 
-$(document).ready(function () {
-  $('.card-content').on('click', function(e) {
+$(document).on('turbolinks:load', function () {
+  $('.challenge-content').on('click', function(e) {
     e.preventDefault();
     var listItem = $(this).closest('li');
     console.log(listItem);
