@@ -7,7 +7,7 @@ $(document).on('ready', function() {
 
     App['challenge' + pathId] = App.cable.subscriptions.create({channel: 'HandshakesChannel', room: pathId}, {
        connected: function() {
-
+        console.log("user connected")
       },
 
       received: function(data) {
