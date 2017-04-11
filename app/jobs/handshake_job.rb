@@ -9,9 +9,9 @@ class HandshakeJob < ApplicationJob
     def render_message(shake)
       challenge = shake.challenge
       if challenge.challenger_id == shake.user_id
-        return "&#x1F590;"
+        return "challenger"
       elsif challenge.acceptor_id == shake.user_id
-        return "&#x270B;"
+        return "acceptor"
       elsif challenge.witness_id == shake.user_id
         return "Hey Let Them Shake on It"
       end

@@ -11,6 +11,7 @@
           <% if !@user.dwolla_url.include? "funding" %>
             <span><h5><strong>Add Bank Info: </strong><%= link_to 'Click Here', edit_user_path(@user) %></h5></span>
           <% end %>
+
         </div>
     </div>
   </div>
@@ -23,6 +24,8 @@
     </div>
   <% end %>
 <% end %>
+
+
 
 <div class="row">
   <div class="col s10 push-s1">

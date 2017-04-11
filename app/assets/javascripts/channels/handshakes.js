@@ -15,10 +15,19 @@ $(document).on('ready', function() {
       },
 
       received: function(data) {
+        //take challenger or acceptor from the handshakehelperbroadcastjob and change the background color of the div with that name.
         console.log(data);
         checkHandshakes(pathId, data.handshakes);
-          $("[data-challenge='" + this.challengeId + "']").css("background-color", "green");
-          return $("[data-challenge='" + this.challengeId + "']").append(data.message);
+        if(data.message == "challenger") {
+          var elem = $("#challenger");
+          unhideHand(elem);
+          rotateAnimation("thumbupchallenger", 30);
+        } else if (data.message == "acceptor") {
+          var elem = $("#acceptor");
+          unhideHand(elem);
+          rotateAnimation("thumbupacceptor", 30);
+        }
+
       },
 
       setChallengeId: function(challengeId) {
@@ -31,9 +40,30 @@ $(document).on('ready', function() {
       App['challenge' + pathId].setChallengeId(pathId);
       App['challenge' + pathId].send();
     })
+
+    // $("#acceptor").addEventListener("click", function() {
+
+    // })
+
     submitNewMessage();
+
   }
 });
+
+// $("#shakearea").on("click", function() {
+//   if(action == 1) {
+//     var elem = $("#challenger");
+//     unhideHand(elem);
+//     rotateAnimation("thumbupchallenger", 30);
+//     action++;
+//   } else if (action == 2) {
+//     var elem = $("#acceptor");
+//     unhideHand(elem);
+//     rotateAnimation("thumbupacceptor", 30);
+//     var button = $("#shakearea");
+//     button.hide();
+//   }
+// })
 
 function splitCookieString(cookies){
   return cookies.split(" ");
@@ -54,7 +84,38 @@ function isHandshakePath(path){
 
 function checkHandshakes(challenge_id, shooken) {
   if(shooken >= 2){
-    return location.replace("/challenges/" + challenge_id + "/edit");
+    setTimeout(
+          function() {
+            location.replace("/challenges/" + challenge_id + "/edit");
+          }, 3000);
+  }
+};
+
+
+function unhideHand(elem){
+  elem.removeClass("hidden");
+  elem.fadeIn(1000).fadeOut(1000).fadeIn(1000);
+}
+
+var looper;
+var degrees = 90;
+function rotateAnimation(el,speed){
+  var elem = document.getElementById(el);
+  if(navigator.userAgent.match("Chrome")){
+    elem.style.WebkitTransform = "rotate("+degrees+"deg)";
+  } else if(navigator.userAgent.match("Firefox")){
+    elem.style.MozTransform = "rotate("+degrees+"deg)";
+  } else if(navigator.userAgent.match("MSIE")){
+    elem.style.msTransform = "rotate("+degrees+"deg)";
+  } else if(navigator.userAgent.match("Opera")){
+    elem.style.OTransform = "rotate("+degrees+"deg)";
+  } else {
+    elem.style.transform = "rotate("+degrees+"deg)";
+  }
+  looper = setTimeout('rotateAnimation(\''+el+'\','+speed+')',speed);
+  degrees--;
+  if(degrees == 0){
+    degrees = 90;
   }
 };
 
@@ -75,4 +136,4 @@ function submitNewMessage(){
       return false;
     });
   }
-};
+}

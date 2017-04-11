@@ -13,3 +13,37 @@
  *= require_tree .
  *= require_self
  */
+
+.hidden {
+  visibility: hidden;
+}
+
+#thumbupchallenger {
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  transform: rotate(90deg);
+  max-height: 100px;
+  padding: 20px;
+}
+
+#thumbupacceptor {
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  transform: rotate(90deg);
+  max-height: 100px;
+  padding: 20px;
+}
+
+#challenger {
+  background-color: green;
+  display: inline-block;
+  width: 45%;
+  height: 50%;
+}
+
+#acceptor {
+  background-color: yellow;
+  display: inline-block;
+  width: 45%;
+  height: 50%;
+}
