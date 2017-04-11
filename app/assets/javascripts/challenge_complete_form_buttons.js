@@ -28,6 +28,6 @@ $(document).ready(function () {
       ajaxFunc.fail(function(response) {
         console.log("shits broke fam");
       });
-  )};
+  });
 
 });
