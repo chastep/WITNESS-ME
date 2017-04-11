@@ -35,17 +35,17 @@ ActiveRecord::Schema.define(version: 20170408225907) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "first_name",                                                                               null: false
-    t.string   "last_name",                                                                                null: false
-    t.string   "email",                                                                                    null: false
-    t.string   "phone",                                                                                    null: false
-    t.string   "username",                                                                                 null: false
-    t.string   "profile_picture", default: "https://robohash.org/etsolutaomnis.png?size=300x300&set=set1"
-    t.string   "password_digest",                                                                          null: false
+    t.string   "first_name",                                                                                    null: false
+    t.string   "last_name",                                                                                     null: false
+    t.string   "email",                                                                                         null: false
+    t.string   "phone",                                                                                         null: false
+    t.string   "username",                                                                                      null: false
+    t.string   "profile_picture", default: "https://robohash.org/autconsequaturquia.png?size=300x300&set=set1"
+    t.string   "password_digest",                                                                               null: false
     t.string   "dwolla_url"
     t.string   "dwolla_id"
-    t.datetime "created_at",                                                                               null: false
-    t.datetime "updated_at",                                                                               null: false
+    t.datetime "created_at",                                                                                    null: false
+    t.datetime "updated_at",                                                                                    null: false
   end
 
 end
