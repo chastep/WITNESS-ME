@@ -31,8 +31,12 @@ class ChallengesController < ApplicationController
 
   def edit
     @challenge = Challenge.find_by(id: params[:id])
-    return redirect_to handshake_path(@challenge) if !have_already_shaken?(shake_count)
-    return redirect_to challenge_path(@challenge) if !@challenge.not_completed?
+    if @challenge
+      return redirect_to handshake_path(@challenge) if !have_already_shaken?(shake_count)
+      return redirect_to challenge_path(@challenge) if !@challenge.not_completed?
+    else
+      render 'shared/_404_cancelled_challenge'
+    end
   end
 
   def update
