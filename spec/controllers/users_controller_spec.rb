@@ -52,7 +52,7 @@ describe UsersController do
 
       it "renders the login page" do
         get :show, { id: user.id }
-        expect(response).to redirect_to new_user_path
+        expect(response).to redirect_to root_path
       end
     end
   end
