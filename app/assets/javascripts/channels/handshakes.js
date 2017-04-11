@@ -29,9 +29,9 @@ $(document).on('ready', function() {
       var email = $('div.panel-body').attr('data-email');
       console.log(email)
       App['challenge' + pathId].setChallengeId(pathId);
-      App['challenge' + pathId].send({emailOfUser: email});
+      App['challenge' + pathId].send();
     })
-    // submitNewMessage();
+    submitNewMessage();
 
   }
 });
