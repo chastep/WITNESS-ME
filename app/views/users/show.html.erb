@@ -14,10 +14,11 @@
 </div>
 
 
-
-<div class="center-align">
-  <%= button_to "Start a Challenge!", new_challenge_path, method: :get %>
-</div>
+<%= form_tag(new_challenge_path) do %>
+  <div class="center">
+    <%= submit_tag 'New Challenge', class: 'btn waves-effect waves-light' %>
+  </div>
+<% end %>
 
 <div class="row">
   <div class="col s10 push-s1">
