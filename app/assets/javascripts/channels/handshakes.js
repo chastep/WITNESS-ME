@@ -18,9 +18,16 @@ $(document).on('ready', function() {
         //take challenger or acceptor from the handshakehelperbroadcastjob and change the background color of the div with that name.
         console.log(data);
         checkHandshakes(pathId, data.handshakes);
+        if(data.message == "challenger") {
+          var elem = $("#challenger");
+          unhideHand(elem);
+          rotateAnimation("thumbupchallenger", 30);
+        } else if (data.message == "acceptor") {
+          var elem = $("#acceptor");
+          unhideHand(elem);
+          rotateAnimation("thumbupacceptor", 30);
+        }
 
-          $("[data-challenge='" + this.challengeId + "']").css("background-color", "green");
-          return $("[data-challenge='" + this.challengeId + "']").append(data.message);
       },
 
       setChallengeId: function(challengeId) {
@@ -38,24 +45,25 @@ $(document).on('ready', function() {
 
     // })
 
-    // submitNewMessage();
-    var action = 1;
-    $("#shakearea").on("click", function() {
-      if(action == 1) {
-        var elem = $("#challenger");
-        unhideHand(elem);
-        rotateAnimation("thumbupchallenger", 30);
-        action++;
-      } else if (action == 2) {
-        var elem = $("#acceptor");
-        unhideHand(elem);
-        rotateAnimation("thumbupacceptor", 30);
-        var button = $("#shakearea");
-        button.hide();
-      }
-    })
+    submitNewMessage();
+
   }
 });
+
+// $("#shakearea").on("click", function() {
+//   if(action == 1) {
+//     var elem = $("#challenger");
+//     unhideHand(elem);
+//     rotateAnimation("thumbupchallenger", 30);
+//     action++;
+//   } else if (action == 2) {
+//     var elem = $("#acceptor");
+//     unhideHand(elem);
+//     rotateAnimation("thumbupacceptor", 30);
+//     var button = $("#shakearea");
+//     button.hide();
+//   }
+// })
 
 function splitCookieString(cookies){
   return cookies.split(" ");
@@ -76,28 +84,13 @@ function isHandshakePath(path){
 
 function checkHandshakes(challenge_id, shooken) {
   if(shooken >= 2){
-    return location.replace("/challenges/" + challenge_id + "/edit");
+    setTimeout(
+          function() {
+            location.replace("/challenges/" + challenge_id + "/edit");
+          }, 3000);
   }
 };
 
-function submitNewMessage(){
-  var $button = $('a.the-shake-button');
-  var $buttonContainer = $button.closest('div');
-  if(isWitness(splitCookieString(document.cookie))){
-    $buttonContainer.append("let your friends shake");
-    $button.remove();
-  }
-  else {
-    $button.on('click', function(event) {
-      var idOfChallengeRoom = $buttonContainer.attr('data-challenge');
-      $button.hide();
-      App['challenge' + idOfChallengeRoom].setChallengeId(idOfChallengeRoom);
-      App['challenge' + idOfChallengeRoom].send({message: idOfChallengeRoom});
-
-      return false;
-    });
-  }
-}
 
 function unhideHand(elem){
   elem.removeClass("hidden");
@@ -126,3 +119,21 @@ function rotateAnimation(el,speed){
   }
 };
 
+function submitNewMessage(){
+  var $button = $('a.the-shake-button');
+  var $buttonContainer = $button.closest('div');
+  if(isWitness(splitCookieString(document.cookie))){
+    $buttonContainer.append("let your friends shake");
+    $button.remove();
+  }
+  else {
+    $button.on('click', function(event) {
+      var idOfChallengeRoom = $buttonContainer.attr('data-challenge');
+      $button.hide();
+      App['challenge' + idOfChallengeRoom].setChallengeId(idOfChallengeRoom);
+      App['challenge' + idOfChallengeRoom].send({message: idOfChallengeRoom});
+
+      return false;
+    });
+  }
+}
