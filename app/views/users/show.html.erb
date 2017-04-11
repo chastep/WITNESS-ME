@@ -14,7 +14,7 @@
 </div>
 
 
-<%= form_tag(new_challenge_path) do %>
+<%= form_tag(new_challenge_path, method: :get) do %>
   <div class="center">
     <%= submit_tag 'New Challenge', class: 'btn waves-effect waves-light' %>
   </div>

@@ -28,7 +28,7 @@ $(document).on('turbolinks:load', function () {
     e.preventDefault();
     var listItem = $(this).closest('li');
     var challengeID = listItem.attr("id");
-    location.replace("/handshakes/" + challengeID);
+    location.replace("/challenges/" + challengeID);
   });
 
   $('#challenge_completed').on('click', function(e) {

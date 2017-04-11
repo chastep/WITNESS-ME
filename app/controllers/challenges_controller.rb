@@ -2,13 +2,10 @@ class ChallengesController < ApplicationController
   include Notifiable
 
   def new
-    return redirect_to new_user_path if !logged_in?
-    @users = User.all
     @challenge = Challenge.new
   end
 
   def create
-    return redirect_to new_user_path if !logged_in?
     @challenge = Challenge.new(challenge_params)
     @challenge.price = @challenge.price * 100
     @challenge.challenger_id = current_user.id
@@ -26,21 +23,19 @@ class ChallengesController < ApplicationController
   end
 
   def show
-    return redirect_to new_user_path if !logged_in?
     @challenge = Challenge.find(params[:id])
+    return redirect_to edit_challenge_path(@challenge) if @challenge.not_completed?
     @winner = User.find_by(id: @challenge.winner_id)
     @loser = User.find_by(id: @challenge.loser_id)
-    render 'show'
   end
 
   def edit
-    return redirect_to new_user_path if !logged_in?
     @challenge = Challenge.find_by(id: params[:id])
     return redirect_to handshake_path(@challenge) if !have_already_shaken?(shake_count)
+    return redirect_to challenge_path(@challenge) if !@challenge.not_completed?
   end
 
   def update
-    return redirect_to new_user_path if !logged_in?
     @challenge = Challenge.find_by(id: params[:id])
     @challenge.update_attributes(winner_id: params[:challenge][:winner_id], loser_id: params[:challenge][:loser_id])
     @challenge.save
@@ -67,7 +62,6 @@ class ChallengesController < ApplicationController
   end
 
   def destroy
-    return redirect_to new_user_path if !logged_in?
     @challenge = Challenge.find_by(id: params[:id])
     if @challenge.witness.id == session[:user_id]
       @challenge.destroy
