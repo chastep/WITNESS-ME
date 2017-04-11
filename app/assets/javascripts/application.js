@@ -15,7 +15,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree ./channels
-
+//= require_tree .
 
 $(document).ready(function () {
   $('.challenge-content').on('click', function(e) {
