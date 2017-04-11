@@ -1,14 +1,16 @@
-<h1>Route GUUUUUUUUUUUUY</h1>
+<h1>Accept the Challenge!</h1>
 
 <div class="panel-body" id="shakearea" data-challenge=<%=@challenge.id%>
   data-email=<%= current_user.email %>>
-  <% if current_user.has_shook?(@challenge) %>
-    <p>You already shook. Please wait</p>
-  <% else %>
-    <a class="the-shake-button waves-effect waves-light btn">Shakey Bakey</a>
-  <% end %>
-  <br>
-  <% if shake_count == 1 %>
-    <p>Your opponent is waiting...</p>
-  <% end %>
+  <a class="the-shake-button waves-effect waves-light btn">Confirm!</a>
+</div>
+
+<div id="challenger" class="hidden">
+  <img id="thumbupchallenger" src="http://www.clker.com/cliparts/t/x/1/j/4/B/thumbs-up-larger-hi.png" alt="thumbup">
+  <p>Challenger has accepted!</p>
+</div>
+
+<div id="acceptor" class="hidden">
+  <img id="thumbupacceptor" src="http://www.clker.com/cliparts/t/x/1/j/4/B/thumbs-up-larger-hi.png" alt="thumbup">
+  <p>Acceptor has accepted!</p>
 </div>
