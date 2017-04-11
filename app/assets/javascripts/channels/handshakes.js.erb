@@ -1,6 +1,7 @@
-$(document).on('turbolinks:load', function() {
-  console.log("hello")
+$(document).on('ready', function() {
+  console.log("hello");
   console.log(location.pathname);
+  console.log(window.location.pathname);
   if(isHandshakePath(location.pathname)){
     var pathId = location.pathname.replace( /^\D+/g, '');
       App['challenge' + pathId] = App.cable.subscriptions.create({channel: 'HandshakesChannel', room: pathId}, {

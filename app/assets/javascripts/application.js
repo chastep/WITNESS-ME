@@ -17,6 +17,7 @@
 //= require_tree ./channels
 
 $(document).ready(function () {
+  console.log("loaded app js");
   $('.card-content').on('click', function(e) {
     e.preventDefault();
     var listItem = $(this).closest('li');
