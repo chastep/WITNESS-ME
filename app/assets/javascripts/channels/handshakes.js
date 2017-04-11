@@ -1,11 +1,17 @@
-$(document).on('turbolinks:load', function() {
-  console.log();
+//= require cable
+//= require_self
+//= require_tree .
+
+$(document).on('ready', function() {
+  console.log("hello");
+  console.log(location.pathname);
+  console.log(window.location.pathname);
   if(isHandshakePath(location.pathname)){
     var pathId = location.pathname.replace( /^\D+/g, '');
 
     App['challenge' + pathId] = App.cable.subscriptions.create({channel: 'HandshakesChannel', room: pathId}, {
        connected: function() {
-
+        console.log("user connected");
       },
 
       received: function(data) {
@@ -23,7 +29,7 @@ $(document).on('turbolinks:load', function() {
       var email = $('div.panel-body').attr('data-email');
       console.log(email)
       App['challenge' + pathId].setChallengeId(pathId);
-      App['challenge' + pathId].send({emailOfUser: email});
+      App['challenge' + pathId].send();
     })
     submitNewMessage();
   }
@@ -31,15 +37,15 @@ $(document).on('turbolinks:load', function() {
 
 function splitCookieString(cookies){
   return cookies.split(" ");
-}
+};
 
 function isWitness(cookieArray){
-  var regexedArray = []
+  var regexedArray = [];
   cookieArray.forEach(function(cookie){
-    var matched = cookie.match(/.*=(.*)/)[1]
+    var matched = cookie.match(/.*=(.*)/)[1];
     regexedArray.push(matched.replace(";",''));
   });
-  return(regexedArray[0] === regexedArray[1])
+  return(regexedArray[0] === regexedArray[1]);
 }
 
 function isHandshakePath(path){
@@ -58,7 +64,8 @@ function submitNewMessage(){
   if(isWitness(splitCookieString(document.cookie))){
     $buttonContainer.append("let your friends shake");
     $button.remove();
-  } else {
+  }
+  else {
     $button.on('click', function(event) {
       var idOfChallengeRoom = $buttonContainer.attr('data-challenge');
       $button.hide();
@@ -68,4 +75,4 @@ function submitNewMessage(){
       return false;
     });
   }
-}
+};

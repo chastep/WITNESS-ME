@@ -15,8 +15,9 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree ./channels
+//= require_tree .
 
-$(document).on('turbolinks:load', function () {
+$(document).ready(function () {
   $('.challenge-content').on('click', function(e) {
     e.preventDefault();
     var listItem = $(this).closest('li');
