@@ -1,26 +1,30 @@
-<%= render "shared/errors" %>
+<div class="row">
+  <div class="col s10 push-s1">
+    <%= render "shared/errors" %>
 
-<%= form_tag(challenges_path) do %>
-  <div class="input-field">
-    <%= label_tag :description %>
-    <%= text_field(:challenge, :description)  %><br>
+    <%= form_tag(challenges_path) do %>
+      <div class="input-field">
+        <%= label_tag :description %>
+        <%= text_field(:challenge, :description)  %><br>
+      </div>
+      <div class="input-field">
+        <%= label_tag :price %>
+        <%= text_field(:challenge, :price) %><br>
+      </div>
+      <!-- need to make these drop downs so we can select a user and not type in a number -->
+      <div class="input-field">
+        <%= label_tag :acceptor %>
+        <%= text_field(:challenge, :acceptor) %><br>
+      </div>
+      <div class="input-field">
+        <%= label_tag :witness %>
+        <%= text_field(:challenge, :witness) %><br>
+      </div>
+      <!-- end of note -->
+      <div class="center">
+        <%= submit_tag 'Challenge!', class: 'btn waves-effect waves-light' %>
+      </div>
+    <% end %>
   </div>
-  <div class="input-field">
-    <%= label_tag :price %>
-    <%= text_field(:challenge, :price) %><br>
-  </div>
-  <!-- need to make these drop downs so we can select a user and not type in a number -->
-  <div class="input-field">
-    <%= label_tag :acceptor %>
-    <%= text_field(:challenge, :acceptor) %><br>
-  </div>
-  <div class="input-field">
-    <%= label_tag :witness %>
-    <%= text_field(:challenge, :witness) %><br>
-  </div>
-  <!-- end of note -->
-  <div class="center">
-    <%= submit_tag 'Challenge!', class: 'btn waves-effect waves-light' %>
-  </div>
-<% end %>
+</div>
 
