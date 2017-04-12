@@ -34,14 +34,14 @@
   padding: 20px;
 }
 
-#challenger {
+#challengerthumbybutton {
   background-color: green;
   display: inline-block;
   width: 45%;
   height: 50%;
 }
 
-#acceptor {
+#acceptorthumbybutton {
   background-color: yellow;
   display: inline-block;
   width: 45%;
