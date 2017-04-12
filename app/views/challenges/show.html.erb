@@ -22,7 +22,7 @@
     FB.ui({
       method: 'share',
       display: 'popup',
-      href: 'https://murmuring-caverns-54973.herokuapp.com/challenges/' + '#{@challenge.id}',
+      href: window.location.href,
     }, function(response){});
   }
 </script>
