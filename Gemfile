@@ -36,6 +36,9 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'pry-rails', :group => :development
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+# photo hosting testing with paperclip and Amazon web services
+gem 'paperclip'
+gem 'aws-sdk', '~> 2.3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
