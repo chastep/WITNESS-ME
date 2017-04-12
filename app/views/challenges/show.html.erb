@@ -8,7 +8,7 @@
   <li>Witness: <%= @challenge.witness.show_full_name %></li>
   <br>
   <li><u>WINNER:</u></li>
-  <li>Outcome: <%= @winner.show_full_name %> was VICTORIOUS! <%= @loser.show_full_name %> wasn't so lucky....</li>
+  <li id="outcome">Outcome: <%= @winner.show_full_name %> was VICTORIOUS! <%= @loser.show_full_name %> wasn't so lucky....</li>
   <br>
   <li>Date: <%= @challenge.created_at.strftime("%a, %b %d, %Y") %></li>
   <li>Price Paid from <%= @loser.show_full_name %> to <%= @winner.show_full_name %> : $<%= @challenge.price / 100 %></li>
@@ -18,10 +18,12 @@
 
 <script>
   document.getElementById('shareBtn').onclick = function() {
+    var outcome = $('#outcome').text();
+    console.log(outcome);
     FB.ui({
       method: 'share',
       display: 'popup',
-      href: 'https://developers.facebook.com/docs/',
+      href: 'https://murmuring-caverns-54973.herokuapp.com/challenges' + '#{@challenge.id}',
     }, function(response){});
   }
 </script>
