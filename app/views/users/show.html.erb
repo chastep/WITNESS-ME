@@ -2,7 +2,7 @@
   <div class="col s10 push-s1">
     <div class="card horizontal ">
       <div class="card-image">
-        <img src="<%= @user.profile_picture %>" alt="avatar" class="avatar-image">
+        <%= image_tag @user.profile_picture.url(:medium) %>
       </div>
         <div class="card-content">
           <span><H5><strong>Full Name:</strong> <%= @user.show_full_name %></H5></span><br>

@@ -4,7 +4,7 @@
   <div class="row">
     <div class="card-panel">
       <!--TODO Change to dynamic path-->
-      <%= form_for :user, class: 'col s12', url: '/users' do |f| %>
+      <%= form_for :user, class: 'col s12', url: '/users', multipart: true do |f| %>
           <div class="input-field">
             <%= f.text_field :full_name, id: 'full_name' %><br>
             <%= f.label :full_name %>
@@ -14,7 +14,7 @@
             <%= f.label :username %>
           </div>
           <div class="input-field">
-            <%= f.file_field :photo, id: 'profile_picture' %>
+            <%= f.file_field :profile_picture, id: 'profile_picture' %>
           </div>
           <div class="input-field">
             <%= f.text_field :phone, id: 'phone' %><br>
