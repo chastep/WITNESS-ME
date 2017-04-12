@@ -10,22 +10,22 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
+
+
  */
+
 
 .hidden {
   visibility: hidden;
 }
-
-.nav-wrapper{
-  background: rgb(232,156,120); /* Old browsers */
-background: -moz-linear-gradient(top, rgba(232,156,120,1) 16%, rgba(110,95,223,1) 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(top, rgba(232,156,120,1) 16%,rgba(110,95,223,1) 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to bottom, rgba(232,156,120,1) 16%,rgba(110,95,223,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e89c78', endColorstr='#6e5fdf',GradientType=0 ); /* IE6-9*/
-}
-
+/*{*/
+/*  background: rgb(232,156,120); /* Old browsers */
+/*background: -moz-linear-gradient(top, rgba(232,156,120,1) 16%, rgba(110,95,223,1) 100%); /* FF3.6-15 */
+/*background: -webkit-linear-gradient(top, rgba(232,156,120,1) 16%,rgba(110,95,223,1) 100%); /* Chrome10-25,Safari5.1-6 */
+/*background: linear-gradient(to bottom, rgba(232,156,120,1) 16%,rgba(110,95,223,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+/*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e89c78', endColorstr='#6e5fdf',GradientType=0 ); /* IE6-9 */
+/*copy*/
+/*}*/
 #thumbupchallenger {
   -webkit-transform: rotate(90deg);
   -moz-transform: rotate(90deg);
@@ -42,14 +42,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e89c78', end
   padding: 20px;
 }
 
-#challengerthumbybutton {
+#challenger {
   background-color: green;
   display: inline-block;
   width: 45%;
   height: 50%;
 }
 
-#acceptorthumbybutton {
+#acceptor {
   background-color: yellow;
   display: inline-block;
   width: 45%;

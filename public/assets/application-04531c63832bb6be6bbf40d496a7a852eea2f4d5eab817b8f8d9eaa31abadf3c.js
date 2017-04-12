@@ -12202,14 +12202,23 @@ $(document).on('ready', function() {
 
     App['challenge' + pathId] = App.cable.subscriptions.create({channel: 'HandshakesChannel', room: pathId}, {
        connected: function() {
-        console.log("user connected")
+        console.log("user connected");
       },
 
       received: function(data) {
+        //take challenger or acceptor from the handshakehelperbroadcastjob and change the background color of the div with that name.
         console.log(data);
         checkHandshakes(pathId, data.handshakes);
-          $("[data-challenge='" + this.challengeId + "']").css("background-color", "green");
-          return $("[data-challenge='" + this.challengeId + "']").append(data.message);
+        if(data.message == "challenger") {
+          var elem = $("#challengerthumbybutton");
+          unhideHand(elem);
+          rotateAnimation("thumbupchallenger", 30);
+        } else if (data.message == "acceptor") {
+          var elem = $("#acceptorthumbybutton");
+          unhideHand(elem);
+          rotateAnimation("thumbupacceptor", 30);
+        }
+
       },
 
       setChallengeId: function(challengeId) {
@@ -12220,23 +12229,44 @@ $(document).on('ready', function() {
       var email = $('div.panel-body').attr('data-email');
       console.log(email)
       App['challenge' + pathId].setChallengeId(pathId);
-      App['challenge' + pathId].send({emailOfUser: email});
+      App['challenge' + pathId].send();
     })
+
+    // $("#acceptor").addEventListener("click", function() {
+
+    // })
+
     submitNewMessage();
+
   }
 });
 
+// $("#shakearea").on("click", function() {
+//   if(action == 1) {
+//     var elem = $("#challenger");
+//     unhideHand(elem);
+//     rotateAnimation("thumbupchallenger", 30);
+//     action++;
+//   } else if (action == 2) {
+//     var elem = $("#acceptor");
+//     unhideHand(elem);
+//     rotateAnimation("thumbupacceptor", 30);
+//     var button = $("#shakearea");
+//     button.hide();
+//   }
+// })
+
 function splitCookieString(cookies){
   return cookies.split(" ");
-}
+};
 
 function isWitness(cookieArray){
-  var regexedArray = []
+  var regexedArray = [];
   cookieArray.forEach(function(cookie){
-    var matched = cookie.match(/.*=(.*)/)[1]
+    var matched = cookie.match(/.*=(.*)/)[1];
     regexedArray.push(matched.replace(";",''));
   });
-  return(regexedArray[0] === regexedArray[1])
+  return(regexedArray[0] === regexedArray[1]);
 }
 
 function isHandshakePath(path){
@@ -12245,7 +12275,38 @@ function isHandshakePath(path){
 
 function checkHandshakes(challenge_id, shooken) {
   if(shooken >= 2){
-    return location.replace("/challenges/" + challenge_id + "/edit");
+    setTimeout(
+          function() {
+            location.replace("/challenges/" + challenge_id + "/edit");
+          }, 3000);
+  }
+};
+
+
+function unhideHand(elem){
+  elem.removeClass("hidden");
+  elem.fadeIn(1000).fadeOut(1000).fadeIn(1000);
+}
+
+var looper;
+var degrees = 90;
+function rotateAnimation(el,speed){
+  var elem = document.getElementById(el);
+  if(navigator.userAgent.match("Chrome")){
+    elem.style.WebkitTransform = "rotate("+degrees+"deg)";
+  } else if(navigator.userAgent.match("Firefox")){
+    elem.style.MozTransform = "rotate("+degrees+"deg)";
+  } else if(navigator.userAgent.match("MSIE")){
+    elem.style.msTransform = "rotate("+degrees+"deg)";
+  } else if(navigator.userAgent.match("Opera")){
+    elem.style.OTransform = "rotate("+degrees+"deg)";
+  } else {
+    elem.style.transform = "rotate("+degrees+"deg)";
+  }
+  looper = setTimeout('rotateAnimation(\''+el+'\','+speed+')',speed);
+  degrees--;
+  if(degrees == 0){
+    degrees = 90;
   }
 };
 
@@ -12255,7 +12316,8 @@ function submitNewMessage(){
   if(isWitness(splitCookieString(document.cookie))){
     $buttonContainer.append("let your friends shake");
     $button.remove();
-  } else {
+  }
+  else {
     $button.on('click', function(event) {
       var idOfChallengeRoom = $buttonContainer.attr('data-challenge');
       $button.hide();
@@ -12267,39 +12329,6 @@ function submitNewMessage(){
   }
 }
 ;
-$(document).ready(function () {
-  $('#challenge_completed').on('click', function(e) {
-    debugger
-    e.preventDefault();
-    $('#challenge_participants_buttons').removeClass('hide');
-    $(this).addClass('hide');
-  });
-
-  $('#challenge_participants_buttons').on('submit', 'form', function(e) {
-    e.preventDefault();
-    debugger
-    var divItem = $(this).closest('div');
-    var winnerID = divItem.attr("id");
-    var ajaxFunc = $.ajax({
-        url: "<%= challenge_path(@challenge) %>",
-        method: 'PUT',
-        dataType: 'json',
-        data: {user: {winner_id: winnerID}}
-      });
-
-      ajaxFunc.done(function(response) {
-        console.log(response);
-        setTimeout(
-          function() {
-            location.replace("<%= challenge_path(@challenge) %>");
-          }, 3000);
-      });
-      ajaxFunc.fail(function(response) {
-        console.log("shits broke fam");
-      });
-  });
-
-});
 (function() {
 
 
@@ -12324,12 +12353,19 @@ $(document).ready(function () {
 
 
 $(document).ready(function () {
+  $('.wibblywobbly').wobbleWindow();
+
   $('.challenge-content').on('click', function(e) {
     e.preventDefault();
     var listItem = $(this).closest('li');
-    console.log(listItem);
     var challengeID = listItem.attr("id");
-    console.log(challengeID);
+    location.replace("/challenges/" + challengeID);
+  });
+
+  $('.pending-challenge').on('click', function(e) {
+    e.preventDefault();
+    var listItem = $(this).closest('li');
+    var challengeID = listItem.attr("id");
     location.replace("/challenges/" + challengeID);
   });
 
