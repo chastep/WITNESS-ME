@@ -1,4 +1,4 @@
-gmaiclass UserMailer < ApplicationMailer
+class UserMailer < ApplicationMailer
   default from: 'witness.me.app@gmail.com'
 
   def welcome_email(user)

@@ -14,6 +14,7 @@
       src="https://code.jquery.com/jquery-3.2.1.min.js"
       integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
       crossorigin="anonymous"></script>
+      <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -46,7 +47,7 @@
           <% if logged_in? %>
             <%= link_to 'WITNESS ME', user_path(current_user), class: 'brand-logo center' %>
           <% else %>
-            <%= link_to 'WITNESS ME', signup_path, id="header", class: 'brand-logo center' %>
+            <%= link_to 'WITNESS ME', signup_path, class: 'brand-logo center' %>
           <% end %>
           <ul id="nav-mobile" >
             <% if logged_in? %>
