@@ -3,9 +3,7 @@
 //= require_tree .
 
 $(document).on('ready', function() {
-  console.log("hello");
-  console.log(location.pathname);
-  console.log(window.location.pathname);
+
   if(isHandshakePath(location.pathname)){
     var pathId = location.pathname.replace( /^\D+/g, '');
 
@@ -36,7 +34,7 @@ $(document).on('ready', function() {
     });
     $(window).load(function(){
       var email = $('div.panel-body').attr('data-email');
-      console.log(email)
+      // console.log(email)
       App['challenge' + pathId].setChallengeId(pathId);
       App['challenge' + pathId].send();
     })
@@ -137,3 +135,4 @@ function submitNewMessage(){
     });
   }
 }
+
