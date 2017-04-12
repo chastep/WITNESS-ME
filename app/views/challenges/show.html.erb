@@ -1,20 +1,23 @@
-<h1>CHALLENGE SUMMARY</h1>
+<h3>CHALLENGE SUMMARY</h3>
 
-<ul>
-  <li>What was challenged?? - <%= @challenge.description %></li><br>
-  <li><u>PARTICIPANTS:</u></li>
-  <li>Challenger: <%= @challenge.challenger.show_full_name %></li>
-  <li>Acceptor: <%= @challenge.acceptor.show_full_name %></li>
-  <li>Witness: <%= @challenge.witness.show_full_name %></li>
-  <br>
-  <li><u>WINNER:</u></li>
-  <li>Outcome: <%= @winner.show_full_name %> was VICTORIOUS! <%= @loser.show_full_name %> wasn't so lucky....</li>
-  <br>
-  <li>Date: <%= @challenge.created_at.strftime("%a, %b %d, %Y") %></li>
-  <li>Price Paid from <%= @loser.show_full_name %> to <%= @winner.show_full_name %> : $<%= @challenge.price / 100 %></li>
-</ul>
+<div class="row">
+  <div class="col s10 push-s1">
+    <ul class="collection with-header">
+      <li class="collection-header"><b>CHALLENGE</b></li>
+      <li class="collection-item">Description: <%= @challenge.description %></li>
+      <li class="collection-header"><b>PARTICIPANTS</b></li>
+      <li class="collection-item">Challenger: <%= @challenge.challenger.show_full_name %></li>
+      <li class="collection-item">Acceptor: <%= @challenge.acceptor.show_full_name %></li>
+      <li class="collection-item">Witness: <%= @challenge.witness.show_full_name %></li>
+      <li class="collection-header"><b>OUTCOME</b></li>
+      <li class="collection-item"><%= @winner.show_full_name %> was VICTORIOUS! <%= @loser.show_full_name %> wasn't so lucky....</li>
+      <li class="collection-item">Date: <%= @challenge.created_at.strftime("%a, %b %d, %Y") %></li>
+      <li class="collection-item">Price Paid from <%= @loser.show_full_name %> to <%= @winner.show_full_name %> : $<%= @challenge.price / 100 %></li>
+    </ul>
+  </div>
+</div>
 
-<div id="shareBtn" class="btn btn-success clearfix">Share</div>
+<!-- <div id="shareBtn" class="btn btn-success clearfix">Share</div> -->
 
 <script>
   document.getElementById('shareBtn').onclick = function() {
