@@ -78,6 +78,49 @@
   height: 450px;
 }
 
+#view-thumbupchallenger {
+/*  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  transform: rotate(90deg);*/
+
+  max-height: 100px;
+  padding: 20px;
+}
+
+#view-thumbupacceptor {
+/*  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  transform: rotate(90deg);*/
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: "FlipH";
+  max-height: 100px;
+  padding: 20px;
+}
+
+#view-challengerthumbybutton {
+  /*background: #e89c78;*/
+  /*float: left;*/
+  height: 450px;
+  /*width: auto;*/
+}
+
+#view-challenger-p {
+}
+
+
+#view-acceptor-p {
+}
+
+#view-acceptorthumbybutton {
+  /*background: #6e5fdf;*/
+  /*float: right;*/
+  height: 450px;
+}
+
 .whole-page{
 background: #f4f6f7; /* Old browsers */
 background: -moz-linear-gradient(top, #f4f6f7 0%, #ecf1f8 37%, #e8eff8 51%, #e7eef9 68%, #dee7f4 84%, #e2ebf6 92%, #d3deed 100%); /* FF3.6-15 */
