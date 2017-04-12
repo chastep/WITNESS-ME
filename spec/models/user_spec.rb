@@ -36,7 +36,7 @@ describe User do
 
     describe "profile_picture" do
       it "returns the profile_picture of the user" do
-        expect(user.pprofile_picture_file_name).to eq("Bill_Murray.jpg")
+        expect(user.profile_picture_file_name).to eq("Bill_Murray.jpg")
       end
     end
 
