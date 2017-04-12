@@ -17,6 +17,8 @@ class User < ApplicationRecord
   # Validate the attached image is image/jpg, image/png, etc
   validates_attachment_content_type :profile_picture, :content_type => /\Aimage\/.*\Z/
 
+  validates_format_of :email,:with => /\A[^@\s]+(@[^@\s]+\.+[^@\s]+\z)/
+
   def full_name
     @full_name
   end
