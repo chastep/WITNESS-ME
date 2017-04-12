@@ -10,24 +10,15 @@
       <li class="collection-item">Acceptor: <%= @challenge.acceptor.show_full_name %></li>
       <li class="collection-item">Witness: <%= @challenge.witness.show_full_name %></li>
       <li class="collection-header"><b>OUTCOME</b></li>
-      <li class="collection-item"><%= @winner.show_full_name %> was VICTORIOUS! <%= @loser.show_full_name %> wasn't so lucky....</li>
+      <li class="collection-item" id="outcome"><%= @winner.show_full_name %> was VICTORIOUS! <%= @loser.show_full_name %> wasn't so lucky....</li>
       <li class="collection-item">Date: <%= @challenge.created_at.strftime("%a, %b %d, %Y") %></li>
       <li class="collection-item">Price Paid from <%= @loser.show_full_name %> to <%= @winner.show_full_name %> : $<%= @challenge.price / 100 %></li>
     </ul>
   </div>
 </div>
 
-<!-- <div id="shareBtn" class="btn btn-success clearfix">Share</div> -->
+<input type="file" accept="image/*" capture="camera">
 
-<script>
-  document.getElementById('shareBtn').onclick = function() {
-    console.log(outcome);
-    FB.ui({
-      method: 'share',
-      display: 'popup',
-      href: window.location.href,
-    }, function(response){});
-  }
-</script>
+<div id="shareBtn" class="btn btn-success clearfix">Share</div>
 
 
