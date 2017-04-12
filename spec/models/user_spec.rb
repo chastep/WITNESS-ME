@@ -36,7 +36,7 @@ describe User do
 
     describe "profile_picture" do
       it "returns the profile_picture of the user" do
-        expect(user.profile_picture).to eq("picture.com")
+        expect(user.profile_picture).to eq("http://vignette2.wikia.nocookie.net/ghostbusters/images/1/11/Bill_Murray.jpeg/revision/latest?cb=20081013140955")
       end
     end
 
