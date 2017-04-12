@@ -16,6 +16,8 @@
   <li>Price Put on the Line: $<%= @challenge.price / 100 %></li>
 </ul>
 
+<%= render "shared/stopwatch" %>
+
 <% if session[:user_id] == @challenge.witness.id %>
   <div class="center-align">
     <%= button_to("Cancel this Challenge", challenge_path(@challenge), method: :delete, :action => 'destroy', :class => "waves-effect waves-light btn-large center") %>
