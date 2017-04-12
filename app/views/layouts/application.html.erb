@@ -42,25 +42,27 @@
        }(document, 'script', 'facebook-jssdk'));
     </script>
     <div class="whole-page">
-      <nav>
-        <div class="nav-wrapper">
-          <% if logged_in? %>
-            <%= link_to 'WITNESS ME', user_path(current_user), class: 'brand-logo center' %>
-          <% else %>
-            <%= link_to 'WITNESS ME', signup_path, class: 'brand-logo center' %>
-          <% end %>
-          <ul id="nav-mobile" >
+      <div class="navbar-fixed">
+        <nav>
+          <div class="nav-wrapper">
             <% if logged_in? %>
-            <li class="left"><a href=<%= user_path(current_user) %>><i class="large material-icons">perm_identity</i></a></li>
-              <li class="right"><%= link_to 'LOGOUT', logout_path %></li>
+              <%= link_to 'WITNESS ME', user_path(current_user), class: 'brand-logo center' %>
             <% else %>
-              <li class="left"><%= link_to 'HOME', login_path %></li>
-              <li class="right"><%= link_to 'LOGIN', login_path %></li>
-              <li class="right"><%= link_to 'REGISTER', signup_path %></li>
+              <%= link_to 'WITNESS ME', signup_path, class: 'brand-logo center' %>
             <% end %>
-          </ul>
-        </div>
-      </nav>
+            <ul id="nav-mobile" >
+              <% if logged_in? %>
+              <li class="left"><a href=<%= user_path(current_user) %>><i class="large material-icons">perm_identity</i></a></li>
+                <li class="right"><%= link_to 'LOGOUT', logout_path %></li>
+              <% else %>
+                <li class="left"><%= link_to 'HOME', login_path %></li>
+                <li class="right"><%= link_to 'LOGIN', login_path %></li>
+                <li class="right"><%= link_to 'REGISTER', signup_path %></li>
+              <% end %>
+            </ul>
+          </div>
+        </nav>
+      </div>
       <%= yield %>
     </div>
   </body>

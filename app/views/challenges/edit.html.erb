@@ -1,4 +1,4 @@
-<h1>CHALLENGE TIME!!</h1>
+<h3>CHALLENGE TIME!!</h3>
 
 <script type="text/javascript">
   setTimeout(function(){
@@ -6,15 +6,18 @@
   }, 20000);
 </script>
 
-<ul>
-  <li>What is GOING ON?? - <%= @challenge.description %></li><br>
-  <li>Challenger: <%= @challenge.challenger.show_full_name %></li>
-  <li>Who are you Challenging??: <%= @challenge.acceptor.show_full_name %></li>
-  <li>Who will Witness this Magnificent Challenge??: <%= @challenge.witness.show_full_name %></li>
-  <br>
-  <li>Date: <%= @challenge.created_at.strftime("%a, %b %d, %Y") %></li>
-  <li>Price Put on the Line: $<%= @challenge.price / 100 %></li>
-</ul>
+<div class="row">
+  <div class="col s10 push-s1">
+    <ul class="collection with-header">
+      <li class="collection-item"><b>Challenge:</b> <%= @challenge.description %></li>
+      <li class="collection-item"><b>Challenger:</b> <%= @challenge.challenger.show_full_name %></li>
+      <li class="collection-item"><b>Acceptor:</b> <%= @challenge.acceptor.show_full_name %></li>
+      <li class="collection-item"><b>Witness:</b> <%= @challenge.witness.show_full_name %></li>
+      <li class="collection-item"><b>Date:</b> <%= @challenge.created_at.strftime("%a, %b %d, %Y") %></li>
+      <li class="collection-item"><b>Price:</b> $<%= @challenge.price / 100 %></li>
+    </ul>
+  </div>
+</div>
 
 <% if session[:user_id] == @challenge.witness.id %>
   <div class="center-align">

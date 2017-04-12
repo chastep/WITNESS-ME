@@ -45,13 +45,15 @@ class User < ApplicationRecord
   def pending_challenges
     personal_challenges = self.all_challenges
     pending = personal_challenges.select { |challenge| challenge.winner_id == nil && challenge.loser_id == nil }
-    return pending
+    sorted_pending = pending.sort_by { |challenge| - challenge.created_at.to_i }
+    return sorted_pending
   end
 
   def completed_challenges
     personal_challenges = self.all_challenges
     completed = personal_challenges.select { |challenge| challenge.winner_id != nil && challenge.loser_id != nil }
-    return completed
+    sorted_completed = completed.sort_by { |challenge| - challenge.created_at.to_i }
+    return sorted_completed
   end
 
   def has_shook?(challenge)
