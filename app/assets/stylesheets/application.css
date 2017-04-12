@@ -17,15 +17,14 @@
 .hidden {
   visibility: hidden;
 }
-
-.the-shake-button{
-  box-shadow: none;
-}
-
-.shake-button-container{
-  background-color: #26a69a;
-}
-
+/*{*/
+/*  background: rgb(232,156,120); /* Old browsers */
+/*background: -moz-linear-gradient(top, rgba(232,156,120,1) 16%, rgba(110,95,223,1) 100%); /* FF3.6-15 */
+/*background: -webkit-linear-gradient(top, rgba(232,156,120,1) 16%,rgba(110,95,223,1) 100%); /* Chrome10-25,Safari5.1-6 */
+/*background: linear-gradient(to bottom, rgba(232,156,120,1) 16%,rgba(110,95,223,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+/*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e89c78', endColorstr='#6e5fdf',GradientType=0 ); /* IE6-9 */
+/*copy*/
+/*}*/
 #thumbupchallenger {
   -webkit-transform: rotate(90deg);
   -moz-transform: rotate(90deg);
@@ -42,14 +41,14 @@
   padding: 20px;
 }
 
-#challengerthumbybutton {
+#challenger {
   background-color: green;
   display: inline-block;
   width: 45%;
   height: 50%;
 }
 
-#acceptorthumbybutton {
+#acceptor {
   background-color: yellow;
   display: inline-block;
   width: 45%;
