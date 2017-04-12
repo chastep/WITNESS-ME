@@ -4,6 +4,7 @@
     <title>WITNESS ME</title>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- dwolla script- -->
     <script src="https://cdn.dwolla.com/1/dwolla.js"></script>
 
@@ -13,9 +14,10 @@
       src="https://code.jquery.com/jquery-3.2.1.min.js"
       integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
       crossorigin="anonymous"></script>
+      <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
-
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -39,25 +41,27 @@
          fjs.parentNode.insertBefore(js, fjs);
        }(document, 'script', 'facebook-jssdk'));
     </script>
+    <div class="whole-page">
       <nav>
         <div class="nav-wrapper">
           <% if logged_in? %>
-            <%= link_to 'WITNESS ME', user_path(current_user), class: 'brand-logo' %>
+            <%= link_to 'WITNESS ME', user_path(current_user), class: 'brand-logo center' %>
           <% else %>
-            <%= link_to 'WITNESS ME', signup_path, class: 'brand-logo' %>
+            <%= link_to 'WITNESS ME', signup_path, class: 'brand-logo center' %>
           <% end %>
-          <ul id="nav-mobile" class="right">
+          <ul id="nav-mobile" >
             <% if logged_in? %>
-            <li><%= link_to "#{current_user.username}", user_path(current_user) %></li>
-              <li><%= link_to 'LOGOUT', logout_path %></li>
+            <li class="left"><a href=<%= user_path(current_user) %>><i class="large material-icons">perm_identity</i></a></li>
+              <li class="right"><%= link_to 'LOGOUT', logout_path %></li>
             <% else %>
-              <li><%= link_to 'HOME', login_path %></li>
-              <li><%= link_to 'LOGIN', login_path %></li>
-              <li><%= link_to 'REGISTER', signup_path %></li>
+              <li class="left"><%= link_to 'HOME', login_path %></li>
+              <li class="right"><%= link_to 'LOGIN', login_path %></li>
+              <li class="right"><%= link_to 'REGISTER', signup_path %></li>
             <% end %>
           </ul>
         </div>
       </nav>
-    <%= yield %>
+      <%= yield %>
+    </div>
   </body>
 </html>
