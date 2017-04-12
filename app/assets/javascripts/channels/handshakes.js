@@ -19,11 +19,11 @@ $(document).on('ready', function() {
         console.log(data);
         checkHandshakes(pathId, data.handshakes);
         if(data.message == "challenger") {
-          var elem = $("#challenger");
+          var elem = $("#challengerthumbybutton");
           unhideHand(elem);
           rotateAnimation("thumbupchallenger", 30);
         } else if (data.message == "acceptor") {
-          var elem = $("#acceptor");
+          var elem = $("#acceptorthumbybutton");
           unhideHand(elem);
           rotateAnimation("thumbupacceptor", 30);
         }
