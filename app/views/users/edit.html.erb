@@ -4,21 +4,17 @@
   <div id="add_bank">
     <input type="button" id="start" value="Add Bank to Dwolla Account" class="waves-effect waves-light btn">
   </div><br>
-  <div class="center-align" id="already_a_dwolla_user">
-    <%= button_to("Link your Existing Dwolla Account", "#{@login_url}", {class: "waves-effect waves-light btn"}) %>
-  </div><br>
   <div class="center-align" id="jump_to_profile">
     <%= link_to("No Thanks, Let's Skip This Step for now", user_path(@user), {class: "waves-effect waves-light btn"}) %>
-  </div><br>
+  </div>
 </div>
 
 <div id="iavContainer"></div>
 
 <script type="text/javascript">
 $('#start').click(function() {
-  $(this).closest('#add_bank').hide();
-  $('#already_a_dwolla_user').hide();
-  $('#jump_to_profile').hide();
+  $(this).closest('#add_bank').remove();
+  $('#jump_to_profile').remove();
   var iavToken = "<%= @token %>";
   dwolla.configure('sandbox');
   dwolla.iav.start(iavToken, {
