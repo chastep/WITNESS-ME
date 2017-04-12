@@ -21,14 +21,14 @@
 
 <% if session[:user_id] == @challenge.witness.id %>
   <div class="center-align">
-    <%= button_to("Cancel this Challenge", challenge_path(@challenge), method: :delete, :action => 'destroy', :class => "waves-effect waves-light btn-large center") %>
+    <%= button_to("Cancel this Challenge", challenge_path(@challenge), method: :delete, :action => 'destroy', :class => "waves-effect waves-light btn-large orange darken-4 center") %>
     <br>
   </div>
 <% end %>
 
 <% if current_user.id == @challenge.witness_id %>
   <div class="center-align" id="challenge-complete-button">
-    <a class="waves-effect waves-light btn-large center" id="challenge_completed">Challenge Completed?</a>
+    <a class="waves-effect waves-light btn-large orange darken-4 center" id="challenge_completed">Challenge Completed?</a>
   </div>
 
   <div id="challenge_participants_buttons" class="hide">
@@ -37,15 +37,15 @@
       <div class="center">
         <%= f.hidden_field :winner_id, value: @challenge.acceptor_id %>
         <%= f.hidden_field :loser_id, value: @challenge.challenger_id %>
-        <%= f.submit "#{@challenge.acceptor.show_full_name}" %>
+        <%= f.submit "#{@challenge.acceptor.show_full_name}", :class => 'btn waves-effect waves-light orange darken-4' %>
       </div>
-    <% end %>
+    <% end %><br>
 
     <%= form_for @challenge, method: :patch, html: { class: "winner", id: "#{@challenge.challenger.id}"} do |f| %>
       <div class="center">
         <%= f.hidden_field :winner_id, value: @challenge.challenger_id %>
         <%= f.hidden_field :loser_id, value: @challenge.acceptor_id %>
-        <%= f.submit "#{@challenge.challenger.show_full_name}" %>
+        <%= f.submit "#{@challenge.challenger.show_full_name}", :class => 'btn waves-effect waves-light orange darken-4' %>
       </div>
     <% end %>
   </div>
