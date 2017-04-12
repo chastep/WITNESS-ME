@@ -18,8 +18,6 @@
 //= require_tree .
 
 $(document).ready(function () {
-  $('.wibblywobbly').wobbleWindow();
-
   $('.challenge-content').on('click', function(e) {
     e.preventDefault();
     var listItem = $(this).closest('li');

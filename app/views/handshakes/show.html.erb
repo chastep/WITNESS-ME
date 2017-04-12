@@ -2,15 +2,19 @@
 
 <div class="panel-body" id="shakearea" data-challenge=<%=@challenge.id%>
   data-email=<%= current_user.email %>>
-  <a class="the-shake-button waves-effect waves-light btn">Confirm!</a>
+  <div class="row">
+    <div class="col s12 center shake-button-container ">
+      <a class="the-shake-button waves-effect waves-light btn-large">Confirm!</a>
+    </div>
+  </div>
 </div>
 
-<div id="challengerthumbybutton" class="hidden wibblywobbly">
+<div id="challengerthumbybutton" class="hidden">
   <img id="thumbupchallenger" src="http://www.clker.com/cliparts/t/x/1/j/4/B/thumbs-up-larger-hi.png" alt="thumbup">
   <p>Challenger has accepted!</p>
 </div>
 
-<div id="acceptorthumbybutton" class="hidden wibblywobbly">
+<div id="acceptorthumbybutton" class="hidden">
   <img id="thumbupacceptor" src="http://www.clker.com/cliparts/t/x/1/j/4/B/thumbs-up-larger-hi.png" alt="thumbup">
   <p>Acceptor has accepted!</p>
 </div>
