@@ -1,0 +1,19 @@
+<li id="<%= challenge.id %>" class="col s12 m6 l4">
+  <div class="card horizontal">
+    <div class="card-stacked">
+      <div class="card-content challenge-content">
+        <span><b>Description:</b> <%= challenge.description %></span><br>
+        <span><b>Date:</b> <%= challenge.created_at.strftime('%A, %b %d, %Y') %></span><br>
+        <span><b>Challenger:</b>
+          <%=challenge.challenger.username %>
+        </span></br>
+        <span><b>Acceptor:</b>
+          <%= challenge.acceptor.username %>
+        </span></br>
+        <span><b>Witness:</b>
+          <%= challenge.witness.username %>
+        </span></br>
+      </div>
+    </div>
+  </div>
+</li>
