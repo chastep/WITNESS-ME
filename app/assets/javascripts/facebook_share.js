@@ -23,7 +23,7 @@ $(document).ready(function () {
       method: 'share',
       display: 'popup',
       href: window.location.href,
-      outcome: challengeOutcome
+      quote: challengeOutcome
     }, function(response){});
 
   });
