@@ -17,7 +17,7 @@
   </div>
 </div>
 
-<% if !logged_in? %>
+<% if check_id(@challenge) %>
   <input type="file" accept="image/*" capture="camera">
   <div id="shareBtn" class="btn btn-success clearfix">Share</div>
 <% end %>
