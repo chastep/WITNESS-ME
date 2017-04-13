@@ -8,11 +8,6 @@
         <%= text_field(:challenge, :description)  %><br>
       </div>
       <div class="input-field">
-        <%= label_tag :price %>
-        <%= select(:challenge, :price) %><br>
-      </div>
-      <!-- need to make these drop downs so we can select a user and not type in a number -->
-      <div class="input-field">
         <%= label_tag :acceptor %>
         <%= text_field(:challenge, :acceptor) %><br>
       </div>
@@ -20,6 +15,11 @@
         <%= label_tag :witness %>
         <%= text_field(:challenge, :witness) %><br>
       </div>
+      <div class="input-field">
+        <%= label_tag :price %>
+        <%= text_field(:challenge, :price) %><br>
+      </div>
+      <!-- need to make these drop downs so we can select a user and not type in a number -->
       <!-- end of note -->
       <div class="center">
         <%= submit_tag 'Challenge!', class: 'btn waves-effect waves-light orange darken-4' %>

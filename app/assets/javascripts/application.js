@@ -18,6 +18,7 @@
 //= require_tree .
 
 $(document).ready(function () {
+  $('select').material_select();
   $('.challenge-content').on('click', function(e) {
     e.preventDefault();
     var listItem = $(this).closest('li');
