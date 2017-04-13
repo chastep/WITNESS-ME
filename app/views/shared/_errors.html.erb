@@ -1,9 +1,9 @@
-<% if @errors %>
+<% if errors %>
   <h4>
-    <%= pluralize(@errors.count, "errors") %> prohibited this category from being saved
+    <%= pluralize(errors.count, "errors") %> prohibited this category from being saved
   </h4>
   <ul>
-    <% @errors.each do |error| %>
+    <% errors.each do |error| %>
       <li><%= error %></li>
     <% end %>
   </ul>
