@@ -1,0 +1,183 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+
+
+ */
+
+
+html {
+  font-family: 'Teko', sans-serif;
+  height: 100%;
+}
+
+body {
+  background: #f4f6f7; /* Old browsers */
+  background: -moz-linear-gradient(top, #f4f6f7 0%, #ecf1f8 37%, #e8eff8 51%, #e7eef9 68%, #dee7f4 84%, #e2ebf6 92%, #d3deed 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #f4f6f7 0%,#ecf1f8 37%,#e8eff8 51%,#e7eef9 68%,#dee7f4 84%,#e2ebf6 92%,#d3deed 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #f4f6f7 0%,#ecf1f8 37%,#e8eff8 51%,#e7eef9 68%,#dee7f4 84%,#e2ebf6 92%,#d3deed 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f4f6f7', endColorstr='#d3deed',GradientType=0 ); /* IE6-9 */
+  height: 100%;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+ h1, h2, h3, h4 {
+  text-align: center;
+ }
+
+.hidden {
+  visibility: hidden;
+}
+.clear {
+  clear: both;
+  height: 1px;
+  overflow: hidden;
+  font-size: 0pt;
+  margin-top: -1px;
+}
+
+.card-image {
+  margin: 0 auto;
+}
+
+.card-content {
+  margin: 0 auto;
+  font-size: 26px;
+}
+
+.nav-wrapper{
+  background: #ff5c59; /* Old browsers */
+  background: -moz-linear-gradient(top, #ff5c59 0%, #ffaf72 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #ff5c59 0%,#ffaf72 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #ff5c59 0%,#ffaf72 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff5c59', endColorstr='#ffaf72',GradientType=0 ); /* IE6-9 */
+}
+
+#thumbupchallenger {
+  max-height: 100px;
+  padding: 20px;
+  display: none;
+  justify-content: center;
+  margin-left: 20%;
+  margin-top: 20%;
+}
+
+#thumbupacceptor {
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: "FlipH";
+  max-height: 100px;
+  padding: 20px;
+  display: none;
+  margin-left: 20%;
+  margin-top: 20%;
+}
+
+#challengerthumbybutton, #acceptorthumbybutton {
+  height: 450px;
+  border-radius: 10%;
+}
+
+#challenger-p, #acceptor-p {
+  display: none;
+}
+
+#view-thumbupchallenger {
+/*  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  transform: rotate(90deg);*/
+
+  max-height: 100px;
+  padding: 20px;
+}
+
+#view-thumbupacceptor {
+/*  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  transform: rotate(90deg);*/
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: "FlipH";
+  max-height: 100px;
+  padding: 20px;
+}
+
+#view-challengerthumbybutton {
+  /*background: #e89c78;*/
+  /*float: left;*/
+  height: 450px;
+  /*width: auto;*/
+}
+
+#view-challenger-p {
+}
+
+
+#view-acceptor-p {
+}
+
+#view-acceptorthumbybutton {
+  /*background: #6e5fdf;*/
+  /*float: right;*/
+  height: 450px;
+}
+
+.whole-page{
+background: #f4f6f7; /* Old browsers */
+background: -moz-linear-gradient(top, #f4f6f7 0%, #ecf1f8 37%, #e8eff8 51%, #e7eef9 68%, #dee7f4 84%, #e2ebf6 92%, #d3deed 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, #f4f6f7 0%,#ecf1f8 37%,#e8eff8 51%,#e7eef9 68%,#dee7f4 84%,#e2ebf6 92%,#d3deed 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #f4f6f7 0%,#ecf1f8 37%,#e8eff8 51%,#e7eef9 68%,#dee7f4 84%,#e2ebf6 92%,#d3deed 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f4f6f7', endColorstr='#d3deed',GradientType=0 ); /* IE6-9 */
+  height: 1200px;
+}
+
+.clear {
+  clear: both;
+  height: 1px;
+  overflow: hidden;
+  font-size: 0pt;
+  margin-top: -1px;
+}
+
+.nav-wrapper{
+  background: #ff5c59; /* Old browsers */
+  background: -moz-linear-gradient(top, #ff5c59 0%, #ffaf72 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #ff5c59 0%,#ffaf72 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #ff5c59 0%,#ffaf72 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff5c59', endColorstr='#ffaf72',GradientType=0 ); /* IE6-9 */
+  margin-left: 20%;
+  margin-top: 20%;
+}
+
+#shake-button {
+  background-color: #ff5c59;
+  height: 100px;
+  width: 100%;
+  position: absolute;
+  bottom: 10px;
+  padding: 20px;
+  font-size: 30px;
+}
+/*
+@media only screen and (max-width: 415px) {
+  body { font-size: 30px;}
+}
+*/
+
