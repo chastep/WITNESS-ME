@@ -2,18 +2,17 @@
   <div class="card horizontal">
     <div class="card-stacked">
       <div class="card-content challenge-content">
-        <span><b>Date:</b> <%= challenge.created_at.strftime('%A, %b %d, %Y') %></span><br>
-        <span><b>Time:</b> <%= challenge.created_at.strftime('%I:%M %p') %></span><br>
         <span><b>Description:</b> <%= challenge.description %></span><br>
-        <span><b>Role:</b>
-          <% if challenge.challenger.id == @user.id %>
-            Challenger
-          <% elsif challenge.acceptor.id == @user.id %>
-            Acceptor
-          <% else %>
-            Witness
-          <% end %>
-        </span>
+        <span><b>Date:</b> <%= challenge.created_at.strftime('%A, %b %d, %Y') %></span><br>
+        <span><b>Challenger:</b>
+          <%=challenge.challenger.username %>
+        </span></br>
+        <span><b>Acceptor:</b>
+          <%= challenge.acceptor.username %>
+        </span></br>
+        <span><b>Witness:</b>
+          <%= challenge.witness.username %>
+        </span></br>
       </div>
     </div>
   </div>
