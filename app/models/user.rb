@@ -19,8 +19,6 @@ class User < ApplicationRecord
 
   validates_format_of :email,:with => /\A[^@\s]+(@[^@\s]+\.+[^@\s]+\z)/
 
-  validates_format_of :phone, :with => /\d{3}-\d{3}-\d{4}/
-
   def full_name
     @full_name
   end
