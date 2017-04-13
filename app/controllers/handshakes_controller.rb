@@ -27,9 +27,15 @@ class HandshakesController < ApplicationController
       # return redirect_to user_path(current_user) if have_already_shaken?(shake_count) && @challenge.not_completed?
     end
 
-    def check_id(user)
-      return (user == @challenge.challenger || user == @challenge.witness || user == @challenge.acceptor)
-    end
+    # def check_id(user)
+      # return (user == @challenge.challenger || user == @challenge.witness || user == @challenge.acceptor)
+    # end
+
+    # def acceptor_has_shook?(challenge)
+    #   # return true if acceptor user has already created a handshake for that challenge, false otherwise
+    #   Handshake.where(challenge_id: challenge.id, user_id: challenge.acceptor_id)
+    # end
+
     # def shake_count
     #   shakes = Handshake.where(challenge_id: @challenge.id).count
     #   return shakes

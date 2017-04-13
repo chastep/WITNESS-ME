@@ -17,8 +17,8 @@
   </div>
 </div>
 
-<input type="file" accept="image/*" capture="camera">
-
-<div id="shareBtn" class="btn btn-success clearfix">Share</div>
-
+<% if check_id(@challenge) %>
+  <input type="file" accept="image/*" capture="camera">
+  <div id="shareBtn" class="btn btn-success clearfix">Share</div>
+<% end %>
 
