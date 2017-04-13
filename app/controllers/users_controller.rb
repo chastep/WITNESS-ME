@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   def create
     # create base user with info
     if params[:user][:profile_picture] == nil
-      params[:user][:profile_picture] = "http://vignette2.wikia.nocookie.net/ghostbusters/images/1/11/Bill_Murray.jpeg/revision/latest?cb=20081013140955"
+      params[:user][:profile_picture] = "http://i.imgur.com/OEnNjqK.png"
     end
     @user = User.new(user_params)
     @user.split_name(params[:user][:full_name])

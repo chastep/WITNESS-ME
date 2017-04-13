@@ -1,0 +1,20 @@
+<li id="<%= challenge.id %>" class="col s12 m6 l4">
+  <div class="card horizontal">
+    <div class="card-stacked">
+      <div class="card-content challenge-content">
+        <span><b>Date:</b> <%= challenge.created_at.strftime('%A, %b %d, %Y') %></span><br>
+        <span><b>Time:</b> <%= challenge.created_at.strftime('%I:%M %p') %></span><br>
+        <span><b>Description:</b> <%= challenge.description %></span><br>
+        <span><b>Role:</b>
+          <% if challenge.challenger.id == @user.id %>
+            Challenger
+          <% elsif challenge.acceptor.id == @user.id %>
+            Acceptor
+          <% else %>
+            Witness
+          <% end %>
+        </span>
+      </div>
+    </div>
+  </div>
+</li>

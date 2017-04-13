@@ -27,12 +27,12 @@ $(document).on('turbolinks:load',function () {
     location.replace("/challenges/" + challengeID);
   });
 
-  $('.pending-challenge').on('click', function(e) {
-    e.preventDefault();
-    var listItem = $(this).closest('li');
-    var challengeID = listItem.attr("id");
-    location.replace("/challenges/" + challengeID);
-  });
+  // $('.pending-challenge').on('click', function(e) {
+  //   e.preventDefault();
+  //   var listItem = $(this).closest('li');
+  //   var challengeID = listItem.attr("id");
+  //   location.replace("/challenges/" + challengeID);
+  // });
 
   $('#challenge_completed').on('click', function(e) {
     e.preventDefault();

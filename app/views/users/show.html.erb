@@ -35,61 +35,27 @@
 
 <div class="row">
   <div class="col s10 push-s1">
-    <h3>Pending Challenges</h3>
-    <ul>
-      <% @user.pending_challenges.each do |challenge| %>
-        <li id="<%= challenge.id %>" class="col s12 m6 l4">
-          <div class="card horizontal">
-            <div class="card-stacked">
-              <div class="card-content pending-challenge">
-                <span><b>Date:</b> <%= challenge.created_at.strftime('%A, %b %d, %Y') %></span><br>
-                <span><b>Time:</b> <%= challenge.created_at.strftime('%I:%M %p') %></span><br>
-                <span><b>Description:</b> <%= challenge.description %></span><br>
-                <span><b>Role:</b>
-                  <% if challenge.challenger.id == @user.id %>
-                    Challenger
-                  <% elsif challenge.acceptor.id == @user.id %>
-                    Acceptor
-                  <% else %>
-                    Witness
-                  <% end %>
-                </h5></span>
-              </div>
-            </div>
-          </div>
-        </li>
-      <% end %>
-    </ul>
+    <% if !@user.pending_challenges.empty? %>
+      <h3>Pending Challenges</h3>
+      <ul>
+        <%= render @user.pending_challenges %>
+      </ul>
+    <% else %>
+      <h3> No Pending Challenges</h3>
+    <% end %>
   </div>
 </div>
 
 
 <div class="row">
   <div class="col s10 push-s1">
-    <h3>Completed Challenges</h3>
-    <ul>
-      <% @user.completed_challenges.each do |challenge| %>
-        <li id="<%= challenge.id %>" class="col s12 m6 l4">
-          <div class="card horizontal">
-            <div class="card-stacked">
-              <div class="card-content challenge-content">
-                <span><b>Date:</b> <%= challenge.created_at.strftime('%A, %b %d, %Y') %></span><br>
-                <span><b>Time:</b> <%= challenge.created_at.strftime('%I:%M %p') %></span><br>
-                <span><b>Description:</b> <%= challenge.description %></span><br>
-                <span><b>Role:</b>
-                  <% if challenge.challenger.id == @user.id %>
-                    Challenger
-                  <% elsif challenge.acceptor.id == @user.id %>
-                    Acceptor
-                  <% else %>
-                    Witness
-                  <% end %>
-                </span>
-              </div>
-            </div>
-          </div>
-        </li>
-      <% end %>
-    </ul>
+    <% if !@user.completed_challenges.empty? %>
+      <h3>Completed Challenges</h3>
+      <ul>
+        <%= render @user.completed_challenges %>
+      </ul>
+    <% else %>
+      <h3> No Completed Challenges</h3>
+    <% end %>
   </div>
 </div>
