@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
-  helper_method :current_user, :logged_in?, :log_in, :log_out, :authorized?, :shake_count
+  helper_method :current_user, :logged_in?, :log_in, :log_out, :authorized?, :shake_count, :check_id
   before_action :authenticate_user!
 
   def log_out
@@ -25,6 +25,10 @@ class ApplicationController < ActionController::Base
 
   def authorized?(integer_id)
     session[:user_id] == integer_id.to_i
+  end
+
+  def check_id(user)
+    return (user == @challenge.challenger || user == @challenge.witness || user == @challenge.acceptor)
   end
 
   protected

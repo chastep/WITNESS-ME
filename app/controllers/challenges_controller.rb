@@ -1,6 +1,8 @@
 class ChallengesController < ApplicationController
   include Notifiable
 
+  skip_before_action :authenticate_user!, only: [:show]
+
   def new
     @challenge = Challenge.new
   end
