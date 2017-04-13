@@ -2,7 +2,7 @@
 //= require_self
 //= require_tree .
 
-$(document).on('ready', function() {
+$(document).on('turbolinks:load', function() {
 
   // $('#challengerthumbybutton').css('opacity','0');
   // $('#acceptorthumbybutton').css('opacity','0');

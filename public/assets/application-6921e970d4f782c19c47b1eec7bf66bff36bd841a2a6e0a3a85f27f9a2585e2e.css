@@ -10,9 +10,10 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
+
+
  */
+
 
 html {
   font-family: 'Teko', sans-serif;
@@ -161,6 +162,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f4f6f7', end
   background: -webkit-linear-gradient(top, #ff5c59 0%,#ffaf72 100%); /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(to bottom, #ff5c59 0%,#ffaf72 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff5c59', endColorstr='#ffaf72',GradientType=0 ); /* IE6-9 */
+  margin-left: 20%;
+  margin-top: 20%;
 }
 
 #shake-button {

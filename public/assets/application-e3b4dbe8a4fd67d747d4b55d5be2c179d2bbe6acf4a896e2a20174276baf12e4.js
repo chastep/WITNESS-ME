@@ -12193,10 +12193,11 @@ var o,i,s,a,u;return i=null!=n?n:{},a=i.restorationIdentifier,s=i.restorationDat
 
 
 
-$(document).on('ready', function() {
-  console.log("hello");
-  console.log(location.pathname);
-  console.log(window.location.pathname);
+$(document).on('turbolinks:load', function() {
+
+  // $('#challengerthumbybutton').css('opacity','0');
+  // $('#acceptorthumbybutton').css('opacity','0');
+
   if(isHandshakePath(location.pathname)){
     var pathId = location.pathname.replace( /^\D+/g, '');
 
@@ -12212,11 +12213,13 @@ $(document).on('ready', function() {
         if(data.message == "challenger") {
           var elem = $("#challengerthumbybutton");
           unhideHand(elem);
-          rotateAnimation("thumbupchallenger", 30);
+          // rotateAnimation("thumbupchallenger", 30);
+          // bloopOpen($elem);
         } else if (data.message == "acceptor") {
           var elem = $("#acceptorthumbybutton");
           unhideHand(elem);
-          rotateAnimation("thumbupacceptor", 30);
+          // rotateAnimation("thumbupacceptor", 30);
+          // bloopOpen(elem);
         }
 
       },
@@ -12227,7 +12230,7 @@ $(document).on('ready', function() {
     });
     $(window).load(function(){
       var email = $('div.panel-body').attr('data-email');
-      console.log(email)
+      // console.log(email)
       App['challenge' + pathId].setChallengeId(pathId);
       App['challenge' + pathId].send();
     })
@@ -12278,37 +12281,48 @@ function checkHandshakes(challenge_id, shooken) {
     setTimeout(
           function() {
             location.replace("/challenges/" + challenge_id + "/edit");
-          }, 3000);
+          }, 5000);
   }
 };
 
 
 function unhideHand(elem){
   elem.removeClass("hidden");
-  elem.fadeIn(1000).fadeOut(1000).fadeIn(1000);
+  // elem.fadeIn(1000).fadeOut(1000).fadeIn(1000);
+  elem.children().animate({
+    height: "toggle",
+  }, 1000);
+  elem.animate({
+      'opacity': '0.5'
+  }, 1000, function () {
+      elem.css({
+          'backgroundColor': '#ff5c59',
+          'opacity': '1'
+      });
+  });
 }
 
-var looper;
-var degrees = 90;
-function rotateAnimation(el,speed){
-  var elem = document.getElementById(el);
-  if(navigator.userAgent.match("Chrome")){
-    elem.style.WebkitTransform = "rotate("+degrees+"deg)";
-  } else if(navigator.userAgent.match("Firefox")){
-    elem.style.MozTransform = "rotate("+degrees+"deg)";
-  } else if(navigator.userAgent.match("MSIE")){
-    elem.style.msTransform = "rotate("+degrees+"deg)";
-  } else if(navigator.userAgent.match("Opera")){
-    elem.style.OTransform = "rotate("+degrees+"deg)";
-  } else {
-    elem.style.transform = "rotate("+degrees+"deg)";
-  }
-  looper = setTimeout('rotateAnimation(\''+el+'\','+speed+')',speed);
-  degrees--;
-  if(degrees == 0){
-    degrees = 90;
-  }
-};
+// var looper;
+// var degrees = 90;
+// function rotateAnimation(el,speed){
+//   var elem = document.getElementById(el);
+//   if(navigator.userAgent.match("Chrome")){
+//     elem.style.WebkitTransform = "rotate("+degrees+"deg)";
+//   } else if(navigator.userAgent.match("Firefox")){
+//     elem.style.MozTransform = "rotate("+degrees+"deg)";
+//   } else if(navigator.userAgent.match("MSIE")){
+//     elem.style.msTransform = "rotate("+degrees+"deg)";
+//   } else if(navigator.userAgent.match("Opera")){
+//     elem.style.OTransform = "rotate("+degrees+"deg)";
+//   } else {
+//     elem.style.transform = "rotate("+degrees+"deg)";
+//   }
+//   looper = setTimeout('rotateAnimation(\''+el+'\','+speed+')',speed);
+//   degrees--;
+//   if(degrees == 0){
+//     degrees = 90;
+//   }
+// };
 
 function submitNewMessage(){
   var $button = $('a.the-shake-button');
@@ -12328,7 +12342,44 @@ function submitNewMessage(){
     });
   }
 }
+
+
+// function bloopOpen(elem) {
+//   elem.not(':animated').css({'opacity': 1 }).effect("scale", {origin:['middle','center'], from:{width:elem.width()/2,height:elem.height()/2}, percent: 100, direction: 'both', easing: "easeOutBounce" }, 700);
+// }
+
 ;
+$(document).on('turbolinks:load',function () {
+
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '190909778091031',
+      xfbml      : true,
+      version    : 'v2.8'
+    });
+    FB.AppEvents.logPageView();
+  };
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+  $('#shareBtn').on('click', function(e) {
+    e.preventDefault();
+    var challengeOutcome = $('#outcome').text()
+    FB.ui({
+      method: 'share',
+      display: 'popup',
+      href: window.location.href,
+      outcome: challengeOutcome
+    }, function(response){});
+
+  });
+
+});
 (function() {
 
 
@@ -12352,7 +12403,7 @@ function submitNewMessage(){
 
 
 
-$(document).ready(function () {
+$(document).on('turbolinks:load',function () {
   $('.challenge-content').on('click', function(e) {
     e.preventDefault();
     var listItem = $(this).closest('li');

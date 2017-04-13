@@ -17,7 +17,8 @@
 //= require_tree ./channels
 //= require_tree .
 
-$(document).ready(function () {
+
+$(document).on('turbolinks:load',function () {
   $('select').material_select();
   $('.challenge-content').on('click', function(e) {
     e.preventDefault();

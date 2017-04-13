@@ -5,7 +5,13 @@ class HandshakesController < ApplicationController
   end
 
   def show
-    @challenge = Challenge.find(params[:id])
+    if @acceptor.has_shook?(@challenge)
+      render 'acceptor_clicked_view'
+    elsif @challenger.has_shook?(@challenge)
+      render 'challenger_clicked_view'
+    else
+      render 'show'
+    end
   end
 
   private
