@@ -3,10 +3,6 @@
 //= require_tree .
 
 $(document).on('turbolinks:load', function() {
-
-  // $('#challengerthumbybutton').css('opacity','0');
-  // $('#acceptorthumbybutton').css('opacity','0');
-
   if(isHandshakePath(location.pathname)){
     var pathId = location.pathname.replace( /^\D+/g, '');
 
@@ -53,20 +49,6 @@ $(document).on('turbolinks:load', function() {
   }
 });
 
-// $("#shakearea").on("click", function() {
-//   if(action == 1) {
-//     var elem = $("#challenger");
-//     unhideHand(elem);
-//     rotateAnimation("thumbupchallenger", 30);
-//     action++;
-//   } else if (action == 2) {
-//     var elem = $("#acceptor");
-//     unhideHand(elem);
-//     rotateAnimation("thumbupacceptor", 30);
-//     var button = $("#shakearea");
-//     button.hide();
-//   }
-// })
 
 function splitCookieString(cookies){
   return cookies.split(" ");
@@ -111,6 +93,31 @@ function unhideHand(elem){
   });
 }
 
+
+function submitNewMessage(){
+  var $button = $('a.the-shake-button');
+  var $buttonContainer = $button.closest('div');
+  if(isWitness(splitCookieString(document.cookie))){
+    $('h4').text("Waiting for the Handshake")
+    $button.remove();
+  }
+  else {
+    $button.on('click', function(event) {
+      var idOfChallengeRoom = $buttonContainer.attr('data-challenge');
+      $button.hide();
+      App['challenge' + idOfChallengeRoom].setChallengeId(idOfChallengeRoom);
+      App['challenge' + idOfChallengeRoom].send({message: idOfChallengeRoom});
+
+      return false;
+    });
+  }
+}
+
+
+// function bloopOpen(elem) {
+//   elem.not(':animated').css({'opacity': 1 }).effect("scale", {origin:['middle','center'], from:{width:elem.width()/2,height:elem.height()/2}, percent: 100, direction: 'both', easing: "easeOutBounce" }, 700);
+// }
+
 // var looper;
 // var degrees = 90;
 // function rotateAnimation(el,speed){
@@ -133,27 +140,17 @@ function unhideHand(elem){
 //   }
 // };
 
-function submitNewMessage(){
-  var $button = $('a.the-shake-button');
-  var $buttonContainer = $button.closest('div');
-  if(isWitness(splitCookieString(document.cookie))){
-    $buttonContainer.append("let your friends shake");
-    $button.remove();
-  }
-  else {
-    $button.on('click', function(event) {
-      var idOfChallengeRoom = $buttonContainer.attr('data-challenge');
-      $button.hide();
-      App['challenge' + idOfChallengeRoom].setChallengeId(idOfChallengeRoom);
-      App['challenge' + idOfChallengeRoom].send({message: idOfChallengeRoom});
-
-      return false;
-    });
-  }
-}
-
-
-// function bloopOpen(elem) {
-//   elem.not(':animated').css({'opacity': 1 }).effect("scale", {origin:['middle','center'], from:{width:elem.width()/2,height:elem.height()/2}, percent: 100, direction: 'both', easing: "easeOutBounce" }, 700);
-// }
-
+// $("#shakearea").on("click", function() {
+//   if(action == 1) {
+//     var elem = $("#challenger");
+//     unhideHand(elem);
+//     rotateAnimation("thumbupchallenger", 30);
+//     action++;
+//   } else if (action == 2) {
+//     var elem = $("#acceptor");
+//     unhideHand(elem);
+//     rotateAnimation("thumbupacceptor", 30);
+//     var button = $("#shakearea");
+//     button.hide();
+//   }
+// })

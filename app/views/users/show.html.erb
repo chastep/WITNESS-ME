@@ -26,7 +26,7 @@
 <% if @user.can_challenge? %>
   <%= form_tag(new_challenge_path, method: :get) do %>
     <div class="center">
-      <%= submit_tag 'New Challenge', class: 'btn waves-effect waves-light orange darken-4' %>
+      <%= submit_tag 'New Challenge', class: 'btn waves-effect waves-light' %>
     </div>
   <% end %>
 <% end %>
