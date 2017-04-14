@@ -173,7 +173,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f4f6f7', end
   font-size: 30px;
 }
 
-.btn{
+.btn, .btn-large{
   background-color:  #ff5c59;
 }
 /*
