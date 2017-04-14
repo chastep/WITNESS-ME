@@ -172,6 +172,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f4f6f7', end
   padding: 20px;
   font-size: 30px;
 }
+
+.btn{
+  background-color:  #ff5c59;
+}
 /*
 @media only screen and (max-width: 415px) {
   body { font-size: 30px;}
