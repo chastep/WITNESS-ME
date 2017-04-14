@@ -49,16 +49,16 @@ class ApplicationController < ActionController::Base
     # dwolla variables
     # ---------------------------
     # create an application token
-    APP_TOKEN = $dwolla.auths.client
+    # APP_TOKEN = $dwolla.auths.client
     # all dwolla users in the application
-    DWOLLA_USERS = APP_TOKEN.get "customers"
+    # DWOLLA_USERS = APP_TOKEN.get "customers"
     # witness org funding account location
-    root = APP_TOKEN.get "/"
-    bucket_location = root._links.account.href
-    bucket = APP_TOKEN.get "#{bucket_location}/funding-sources"
-    BUCKET_URL = bucket._embedded[:"funding-sources"][0][:"_links"][:"self"][:"href"]
+    # root = APP_TOKEN.get "/"
+    # bucket_location = root._links.account.href
+    # bucket = APP_TOKEN.get "#{bucket_location}/funding-sources"
+    # BUCKET_URL = bucket._embedded[:"funding-sources"][0][:"_links"][:"self"][:"href"]
     # witness org id
-    main = APP_TOKEN.get bucket_location
-    WITNESS_DWOLLA_ID = main.id
+    # main = APP_TOKEN.get bucket_location
+    # WITNESS_DWOLLA_ID = main.id
 
 end
