@@ -23,9 +23,11 @@ class UsersController < ApplicationController
     @user.split_name(params[:user][:full_name])
     # create dwolla customer account and id
     request_body = @user.customer_request_body
-    customer = APP_TOKEN.post "customers", request_body
+    app_token = $dwolla.auths.client
+    customer = app_token.post "customers", request_body
     @user.dwolla_url = customer.headers[:location]
-    @user.dwolla_id = DWOLLA_USERS._embedded.customers[0].id
+    dwolla_witness_users = app_token.get "customers"
+    @user.dwolla_id = dwolla_witness_users._embedded.customers[0].id
     if @user.save
       log_in(@user.id)
       UserMailer.welcome_email(@user).deliver_now
@@ -43,7 +45,8 @@ class UsersController < ApplicationController
       render 'shared/_404'
     else
       customer_url = @user.dwolla_url
-      customer = APP_TOKEN.post "#{customer_url}/iav-token"
+      app_token = $dwolla.auths.client
+      customer = app_token.post "#{customer_url}/iav-token"
       @token = customer.token
     end
   end
