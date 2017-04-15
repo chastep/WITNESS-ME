@@ -19,6 +19,8 @@
   </div>
 </div>
 
+<%= render "shared/stopwatch" %>
+
 <% if session[:user_id] == @challenge.witness.id %>
   <div class="center-align">
     <%= button_to("Cancel this Challenge", challenge_path(@challenge), method: :delete, :action => 'destroy', :class => "waves-effect waves-light btn-large center") %>
